@@ -19,7 +19,7 @@ service FccService {
 
   rpc Publish (PublishRequest) returns (PublishResponse){}
 
-  rpc FetchMiniConfig (FetchMiniConfigRequest) returns (FetchMiniConfigResponse){}
+  rpc FetchConfig (FetchConfigRequest) returns (FetchConfigResponse){}
 }
 
 message BaseRet{
@@ -31,8 +31,7 @@ message BaseRet{
 message FetchProjectsRequest {
   int64 limit = 1;
   int64 offset = 2;
-  string project_key = 3;
-  string project_name = 4;
+  map<string,string> filter = 3;
 }
 
 message FetchProjectsRet {
@@ -58,8 +57,7 @@ message FetchGroupsRequest {
   int64 limit = 1;
   int64 offset = 2;
   string project_key = 3;
-  string group_key = 4;
-  string group_name = 5;
+  map<string,string> filter = 4;
 }
 
 message FetchGroupsRet {
@@ -87,7 +85,7 @@ message FetchConfigsRequest {
   int64 offset = 2;
   string project_key = 3;
   string group_key = 4;
-  string conf_key = 5;
+  map<string,string> filter = 5;
 }
 
 message FetchConfigsRet {
@@ -173,19 +171,15 @@ message PublishResponse {
 }
 
 // swagger:model
-message FetchMiniConfigRequest {
+message FetchConfigRequest {
   string project_key = 1;
   string group_key = 2;
   string conf_key = 3;
 }
 
-message MiniConfig {
-  string value = 1;
-}
-
 // swagger:model
-message FetchMiniConfigResponse {
+message FetchConfigResponse {
   BaseRet  base_ret = 1;
-  MiniConfig data = 2;
+  Config   data = 2;
 }
 

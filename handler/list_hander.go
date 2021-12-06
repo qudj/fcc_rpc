@@ -8,11 +8,11 @@ import (
 
 func FetchProjects(ctx context.Context, req *fcc_serv.FetchProjectsRequest) (*fcc_serv.FetchProjectsRet, error) {
 	filter := make(map[string]interface{})
-	if req.ProjectKey != "" {
-		filter["project_key"] = req.ProjectKey
+	if proKey, ok := req.Filter["project_key"]; ok{
+		filter["project_key"] = proKey
 	}
-	if req.ProjectName != "" {
-		filter["project_name"] = req.ProjectName
+	if proName, ok := req.Filter["project_name"]; ok{
+		filter["project_name"] = proName
 	}
 	list, count, err := models.GetProjects(ctx, filter, int(req.Offset), int(req.Limit), "id")
 	if err != nil {
@@ -41,11 +41,11 @@ func FormatProjectRetList(res []*models.FccProject) []*fcc_serv.Project {
 
 func FetchGroups(ctx context.Context, req *fcc_serv.FetchGroupsRequest) (*fcc_serv.FetchGroupsRet, error) {
 	filter := make(map[string]interface{})
-	if req.GroupKey != "" {
-		filter["group_key"] = req.GroupKey
+	if groKey, ok := req.Filter["group_key"]; ok{
+		filter["group_key"] = groKey
 	}
-	if req.GroupName != "" {
-		filter["group_name"] = req.GroupName
+	if groName, ok := req.Filter["group_name"]; ok{
+		filter["group_name"] = groName
 	}
 	list, count, err := models.GetGroups(ctx, req.ProjectKey, filter, int(req.Offset), int(req.Limit), "id")
 	if err != nil {
@@ -75,8 +75,8 @@ func FormatGroupRetList(res []*models.FccGroup) []*fcc_serv.Group {
 
 func FetchConfigs(ctx context.Context, req *fcc_serv.FetchConfigsRequest) (*fcc_serv.FetchConfigsRet, error) {
 	filter := make(map[string]interface{})
-	if req.ConfKey != "" {
-		filter["conf_key"] = req.ConfKey
+	if confKey, ok := req.Filter["conf_key"]; ok{
+		filter["conf_key"] = confKey
 	}
 	list, count, err := models.GetConfigs(ctx, req.ProjectKey, req.GroupKey, filter, int(req.Offset), int(req.Limit), "id")
 	if err != nil {

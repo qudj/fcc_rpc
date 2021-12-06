@@ -121,12 +121,12 @@ func (f FccService) Publish(ctx context.Context, req *fcc_serv.PublishRequest) (
 	return ret, nil
 }
 
-func (f FccService) FetchMiniConfig(ctx context.Context, req *fcc_serv.FetchMiniConfigRequest) (*fcc_serv.FetchMiniConfigResponse, error) {
-	ret := &fcc_serv.FetchMiniConfigResponse{
+func (f FccService) FetchConfig(ctx context.Context, req *fcc_serv.FetchConfigRequest) (*fcc_serv.FetchConfigResponse, error) {
+	ret := &fcc_serv.FetchConfigResponse{
 		BaseRet: &fcc_serv.BaseRet{},
-		Data:    &fcc_serv.MiniConfig{},
+		Data:    &fcc_serv.Config{},
 	}
-	value, err := handler.FetchMiniConfig(ctx, req)
+	value, err := handler.FetchConfig(ctx, req)
 	if err != nil {
 		ret.BaseRet.Code = 400
 		ret.BaseRet.Msg = err.Error()

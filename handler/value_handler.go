@@ -41,10 +41,10 @@ func Publish(ctx context.Context, req *fcc_serv.PublishRequest) error {
 	return nil
 }
 
-func FetchMiniConfig(ctx context.Context, req *fcc_serv.FetchMiniConfigRequest) (string, error) {
+func FetchConfig(ctx context.Context, req *fcc_serv.FetchConfigRequest) (string, error) {
 	key := fmt.Sprintf("MC:%s_%s_%s", req.ProjectKey, req.GroupKey, req.ConfKey)
 	res, err, _ := gsf.Do(key, func() (interface{}, error) {
-		return models.GetMiniConfig(ctx, req.ProjectKey, req.GroupKey, req.ConfKey)
+		return models.GetFccConf(ctx, req.ProjectKey, req.GroupKey, req.ConfKey)
 	})
 	if err != nil {
 		return "", err

@@ -2,7 +2,6 @@ package models
 
 import (
 	"context"
-	"fmt"
 	"github.com/qudj/fcc_rpc/config"
 )
 
@@ -136,14 +135,6 @@ func GetConfigs(ctx context.Context, proKey, grKey string, filter map[string]int
 	return ret, count, nil
 }
 
-func GetMiniConfig(ctx context.Context, proKey, grKey, confKey string) (*FccConf, error) {
-	var ret *FccConf
-	if err := config.FccReadDB.WithContext(ctx).Where("project_key = ? and group_key = ? and conf_key", proKey, grKey, confKey).First(ret).Error; err != nil {
-		return nil, err
-	}
-	return ret, nil
-}
-
 func SaveProject(project *FccProject) error {
 	if err := config.FccReadDB.Save(project).Error; err != nil {
 		return err
@@ -172,10 +163,10 @@ func SaveHistory(history *FccHistoryLog) error {
 	return nil
 }
 
-func GetFccConf(project, group, key string) *FccMiniConf {
-	conf := &FccMiniConf{}
-	if err := config.FccReadDB.Where("project_key = ? and group_key = ? and conf_key = ?", project, group, key).First(conf).Error; err != nil {
-		fmt.Println(err)
+func GetFccConf(ctx context.Context, project, group, key string) (*FccConf, error) {
+	conf := &FccConf{}
+	if err := config.FccReadDB.WithContext(ctx).Where("project_key = ? and group_key = ? and conf_key = ?", project, group, key).First(conf).Error; err != nil {
+		return nil, err
 	}
-	return conf
+	return conf, nil
 }
