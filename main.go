@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 	"github.com/qudj/fcc_rpc/config"
-	"github.com/qudj/fly_lib/models/fly_conf"
+	"github.com/qudj/fcc_rpc/models/fcc_serv"
 	"google.golang.org/grpc"
 	"net"
 )
@@ -26,7 +26,7 @@ func main() {
 
 	// 注册HelloService
 	fccService := NewFccServiceServer()
-	fly_conf.RegisterFccServiceServer(s, fccService)
+	fcc_serv.RegisterFccServiceServer(s, fccService)
 
 	fmt.Println(fmt.Sprintf("listen to %s:", Address))
 	s.Serve(listen)

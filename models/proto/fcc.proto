@@ -1,0 +1,104 @@
+syntax = "proto3";
+
+package fcc.serv;
+
+service FccService {
+  rpc FetchProjects (FetchProjectsRequest) returns (FetchProjectsResponse){}
+
+  rpc FetchGroups (FetchGroupsRequest) returns (FetchGroupsResponse){}
+
+  rpc FetchConfigs (FetchConfigsRequest) returns (FetchConfigsResponse){}
+
+  rpc FetchMiniConfig (FetchMiniConfigRequest) returns (FetchMiniConfigResponse){}
+}
+
+message BaseRet{
+  int64  code = 1;
+  string msg = 2;
+}
+
+// swagger:model
+message FetchProjectsRequest {
+  int64 limit = 1;
+  int64 offset = 2;
+  string project_key = 3;
+  string project_name = 4;
+}
+
+message Project {
+  string project_key = 1;
+  string project_name = 2;
+  string description = 3;
+  int64 status = 4;
+}
+
+// swagger:model
+message FetchProjectsResponse {
+  BaseRet  base_ret = 1;
+  repeated Project data = 2;
+}
+
+// swagger:model
+message FetchGroupsRequest {
+  int64 limit = 1;
+  int64 offset = 2;
+  string project_key = 3;
+  string group_key = 4;
+  string group_name = 5;
+}
+
+message Group {
+  string project_key = 1;
+  string group_key = 2;
+  string group_name = 3;
+  string description = 4;
+  int64 status = 5;
+}
+
+// swagger:model
+message FetchGroupsResponse {
+  BaseRet  base_ret = 1;
+  repeated Group data = 2;
+}
+
+// swagger:model
+message FetchConfigsRequest {
+  int64 limit = 1;
+  int64 offset = 2;
+  string project_key = 3;
+  string group_key = 4;
+  string conf_key = 5;
+}
+
+message Config {
+  string project_key = 1;
+  string group_key = 2;
+  string conf_key = 3;
+  string description = 4;
+  string value = 5;
+  string pre_value = 6;
+  int64 status = 7;
+}
+
+// swagger:model
+message FetchConfigsResponse {
+  BaseRet  base_ret = 1;
+  repeated Config data = 2;
+}
+
+// swagger:model
+message FetchMiniConfigRequest {
+  string project_key = 1;
+  string group_key = 2;
+  string conf_key = 3;
+}
+
+message MiniConfig {
+  string value = 1;
+}
+
+// swagger:model
+message FetchMiniConfigResponse {
+  BaseRet  base_ret = 1;
+  MiniConfig data = 2;
+}
