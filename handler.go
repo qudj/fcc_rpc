@@ -2,12 +2,11 @@ package main
 
 import (
 	"context"
-	"github.com/qudj/fcc_rpc/models"
+	"github.com/qudj/fcc_rpc/handler"
 	"github.com/qudj/fcc_rpc/models/fcc_serv"
 )
 
-type FccService struct {
-}
+type FccService struct{}
 
 func NewFccServiceServer() fcc_serv.FccServiceServer {
 	return FccService{}
@@ -17,49 +16,122 @@ func (f FccService) FetchProjects(ctx context.Context, req *fcc_serv.FetchProjec
 	ret := &fcc_serv.FetchProjectsResponse{
 		BaseRet: &fcc_serv.BaseRet{},
 	}
-	filter := make(map[string]interface{})
-	if req.ProjectKey != "" {
-		filter["project_key"] = req.ProjectKey
-	}
-	if req.ProjectName != "" {
-		filter["project_name"] = req.ProjectName
-	}
-	res, err := models.GetProjects(ctx, filter, int(req.Offset), int(req.Limit), "id")
+	data, err := handler.FetchProjects(ctx, req)
 	if err != nil {
 		ret.BaseRet.Code = 400
 		ret.BaseRet.Msg = err.Error()
 		return ret, nil
 	}
-	ret.Data = FormatProjectRet(res)
+	ret.Data = data
 	return ret, nil
 }
 
-func FormatProjectRet(res []*models.FccProject) []*fcc_serv.Project {
-	ret := make([]*fcc_serv.Project, 0, len(res))
-	for _, v := range res {
-		one := &fcc_serv.Project{
-			ProjectKey: v.ProjectKey,
-			ProjectName: v.ProjectName,
-			Description: v.Description,
-			Status: v.Status,
-		}
-		ret = append(ret, one)
-	}
-	return ret
-}
-
-
 func (f FccService) FetchGroups(ctx context.Context, req *fcc_serv.FetchGroupsRequest) (*fcc_serv.FetchGroupsResponse, error) {
-
-	return &fcc_serv.FetchGroupsResponse{}, nil
+	ret := &fcc_serv.FetchGroupsResponse{
+		BaseRet: &fcc_serv.BaseRet{},
+		Data:    &fcc_serv.FetchGroupsRet{},
+	}
+	data, err := handler.FetchGroups(ctx, req)
+	if err != nil {
+		ret.BaseRet.Code = 400
+		ret.BaseRet.Msg = err.Error()
+		return ret, nil
+	}
+	ret.Data = data
+	return ret, nil
 }
 
 func (f FccService) FetchConfigs(ctx context.Context, req *fcc_serv.FetchConfigsRequest) (*fcc_serv.FetchConfigsResponse, error) {
+	ret := &fcc_serv.FetchConfigsResponse{
+		BaseRet: &fcc_serv.BaseRet{},
+		Data:    &fcc_serv.FetchConfigsRet{},
+	}
+	data, err := handler.FetchConfigs(ctx, req)
+	if err != nil {
+		ret.BaseRet.Code = 400
+		ret.BaseRet.Msg = err.Error()
+		return ret, nil
+	}
+	ret.Data = data
+	return ret, nil
+}
 
-	return &fcc_serv.FetchConfigsResponse{}, nil
+func (f FccService) SaveProject(ctx context.Context, req *fcc_serv.SaveProjectRequest) (*fcc_serv.SaveProjectResponse, error) {
+	ret := &fcc_serv.SaveProjectResponse{
+		BaseRet: &fcc_serv.BaseRet{},
+	}
+	err := handler.SaveProject(ctx, req)
+	if err != nil {
+		ret.BaseRet.Code = 400
+		ret.BaseRet.Msg = err.Error()
+		return ret, nil
+	}
+	return ret, nil
+}
+
+func (f FccService) SaveGroup(ctx context.Context, req *fcc_serv.SaveGroupRequest) (*fcc_serv.SaveGroupResponse, error) {
+	ret := &fcc_serv.SaveGroupResponse{
+		BaseRet: &fcc_serv.BaseRet{},
+	}
+	err := handler.SaveGroup(ctx, req)
+	if err != nil {
+		ret.BaseRet.Code = 400
+		ret.BaseRet.Msg = err.Error()
+		return ret, nil
+	}
+	return ret, nil
+}
+
+func (f FccService) SaveConfig(ctx context.Context, req *fcc_serv.SaveConfigRequest) (*fcc_serv.SaveConfigResponse, error) {
+	ret := &fcc_serv.SaveConfigResponse{
+		BaseRet: &fcc_serv.BaseRet{},
+	}
+	err := handler.SaveConfig(ctx, req)
+	if err != nil {
+		ret.BaseRet.Code = 400
+		ret.BaseRet.Msg = err.Error()
+		return ret, nil
+	}
+	return ret, nil
+}
+
+func (f FccService) PrePublish(ctx context.Context, req *fcc_serv.PrePublishRequest) (*fcc_serv.PrePublishResponse, error) {
+	ret := &fcc_serv.PrePublishResponse{
+		BaseRet: &fcc_serv.BaseRet{},
+	}
+	err := handler.PrePublish(ctx, req)
+	if err != nil {
+		ret.BaseRet.Code = 400
+		ret.BaseRet.Msg = err.Error()
+		return ret, nil
+	}
+	return ret, nil
+}
+
+func (f FccService) Publish(ctx context.Context, req *fcc_serv.PublishRequest) (*fcc_serv.PublishResponse, error) {
+	ret := &fcc_serv.PublishResponse{
+		BaseRet: &fcc_serv.BaseRet{},
+	}
+	err := handler.Publish(ctx, req)
+	if err != nil {
+		ret.BaseRet.Code = 400
+		ret.BaseRet.Msg = err.Error()
+		return ret, nil
+	}
+	return ret, nil
 }
 
 func (f FccService) FetchMiniConfig(ctx context.Context, req *fcc_serv.FetchMiniConfigRequest) (*fcc_serv.FetchMiniConfigResponse, error) {
-
-	return &fcc_serv.FetchMiniConfigResponse{}, nil
+	ret := &fcc_serv.FetchMiniConfigResponse{
+		BaseRet: &fcc_serv.BaseRet{},
+		Data:    &fcc_serv.MiniConfig{},
+	}
+	value, err := handler.FetchMiniConfig(ctx, req)
+	if err != nil {
+		ret.BaseRet.Code = 400
+		ret.BaseRet.Msg = err.Error()
+		return ret, nil
+	}
+	ret.Data.Value = value
+	return ret, nil
 }

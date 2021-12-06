@@ -9,6 +9,16 @@ service FccService {
 
   rpc FetchConfigs (FetchConfigsRequest) returns (FetchConfigsResponse){}
 
+  rpc SaveProject (SaveProjectRequest) returns (SaveProjectResponse){}
+
+  rpc SaveGroup (SaveGroupRequest) returns (SaveGroupResponse){}
+
+  rpc SaveConfig (SaveConfigRequest) returns (SaveConfigResponse){}
+
+  rpc PrePublish (PrePublishRequest) returns (PrePublishResponse){}
+
+  rpc Publish (PublishRequest) returns (PublishResponse){}
+
   rpc FetchMiniConfig (FetchMiniConfigRequest) returns (FetchMiniConfigResponse){}
 }
 
@@ -25,6 +35,11 @@ message FetchProjectsRequest {
   string project_name = 4;
 }
 
+message FetchProjectsRet {
+  int64 total = 1;
+  repeated Project list = 2;
+}
+
 message Project {
   string project_key = 1;
   string project_name = 2;
@@ -35,7 +50,7 @@ message Project {
 // swagger:model
 message FetchProjectsResponse {
   BaseRet  base_ret = 1;
-  repeated Project data = 2;
+  FetchProjectsRet data = 2;
 }
 
 // swagger:model
@@ -45,6 +60,11 @@ message FetchGroupsRequest {
   string project_key = 3;
   string group_key = 4;
   string group_name = 5;
+}
+
+message FetchGroupsRet {
+  int64 total = 1;
+  repeated Group list = 2;
 }
 
 message Group {
@@ -58,7 +78,7 @@ message Group {
 // swagger:model
 message FetchGroupsResponse {
   BaseRet  base_ret = 1;
-  repeated Group data = 2;
+  FetchGroupsRet data = 2;
 }
 
 // swagger:model
@@ -68,6 +88,11 @@ message FetchConfigsRequest {
   string project_key = 3;
   string group_key = 4;
   string conf_key = 5;
+}
+
+message FetchConfigsRet {
+  int64 total = 1;
+  repeated Config list = 2;
 }
 
 message Config {
@@ -83,7 +108,68 @@ message Config {
 // swagger:model
 message FetchConfigsResponse {
   BaseRet  base_ret = 1;
-  repeated Config data = 2;
+  FetchConfigsRet data = 2;
+}
+
+// swagger:model
+message SaveProjectRequest {
+  Project project = 1;
+  string op_id = 2;
+}
+
+// swagger:model
+message SaveProjectResponse {
+  BaseRet  base_ret = 1;
+}
+
+// swagger:model
+message SaveGroupRequest {
+  Group group = 1;
+  string op_id = 2;
+}
+
+// swagger:model
+message SaveGroupResponse {
+  BaseRet  base_ret = 1;
+}
+
+// swagger:model
+message SaveConfigRequest {
+  Config config = 1;
+  string op_id = 2;
+}
+
+// swagger:model
+message SaveConfigResponse {
+  BaseRet  base_ret = 1;
+}
+
+
+// swagger:model
+message PrePublishRequest {
+  string project_key = 1;
+  string group_key = 2;
+  string conf_key = 3;
+  string pre_value = 4;
+  string op_id = 5;
+}
+
+// swagger:model
+message PrePublishResponse {
+  BaseRet  base_ret = 1;
+}
+
+// swagger:model
+message PublishRequest {
+  string project_key = 1;
+  string group_key = 2;
+  string conf_key = 3;
+  string op_id = 4;
+}
+
+// swagger:model
+message PublishResponse {
+  BaseRet  base_ret = 1;
 }
 
 // swagger:model
@@ -102,3 +188,4 @@ message FetchMiniConfigResponse {
   BaseRet  base_ret = 1;
   MiniConfig data = 2;
 }
+

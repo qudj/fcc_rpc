@@ -147,6 +147,58 @@ func (m *FetchProjectsRequest) GetProjectName() string {
 	return ""
 }
 
+type FetchProjectsRet struct {
+	Total int64      `protobuf:"varint,1,opt,name=total,proto3" json:"total,omitempty"`
+	List  []*Project `protobuf:"bytes,2,rep,name=list,proto3" json:"list,omitempty"`
+}
+
+func (m *FetchProjectsRet) Reset()         { *m = FetchProjectsRet{} }
+func (m *FetchProjectsRet) String() string { return proto.CompactTextString(m) }
+func (*FetchProjectsRet) ProtoMessage()    {}
+func (*FetchProjectsRet) Descriptor() ([]byte, []int) {
+	return fileDescriptor_690ecd8b3e17edf8, []int{2}
+}
+func (m *FetchProjectsRet) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *FetchProjectsRet) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_FetchProjectsRet.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *FetchProjectsRet) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_FetchProjectsRet.Merge(m, src)
+}
+func (m *FetchProjectsRet) XXX_Size() int {
+	return m.Size()
+}
+func (m *FetchProjectsRet) XXX_DiscardUnknown() {
+	xxx_messageInfo_FetchProjectsRet.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_FetchProjectsRet proto.InternalMessageInfo
+
+func (m *FetchProjectsRet) GetTotal() int64 {
+	if m != nil {
+		return m.Total
+	}
+	return 0
+}
+
+func (m *FetchProjectsRet) GetList() []*Project {
+	if m != nil {
+		return m.List
+	}
+	return nil
+}
+
 type Project struct {
 	ProjectKey  string `protobuf:"bytes,1,opt,name=project_key,json=projectKey,proto3" json:"project_key,omitempty"`
 	ProjectName string `protobuf:"bytes,2,opt,name=project_name,json=projectName,proto3" json:"project_name,omitempty"`
@@ -158,7 +210,7 @@ func (m *Project) Reset()         { *m = Project{} }
 func (m *Project) String() string { return proto.CompactTextString(m) }
 func (*Project) ProtoMessage()    {}
 func (*Project) Descriptor() ([]byte, []int) {
-	return fileDescriptor_690ecd8b3e17edf8, []int{2}
+	return fileDescriptor_690ecd8b3e17edf8, []int{3}
 }
 func (m *Project) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -217,15 +269,15 @@ func (m *Project) GetStatus() int64 {
 
 // swagger:model
 type FetchProjectsResponse struct {
-	BaseRet *BaseRet   `protobuf:"bytes,1,opt,name=base_ret,json=baseRet,proto3" json:"base_ret,omitempty"`
-	Data    []*Project `protobuf:"bytes,2,rep,name=data,proto3" json:"data,omitempty"`
+	BaseRet *BaseRet          `protobuf:"bytes,1,opt,name=base_ret,json=baseRet,proto3" json:"base_ret,omitempty"`
+	Data    *FetchProjectsRet `protobuf:"bytes,2,opt,name=data,proto3" json:"data,omitempty"`
 }
 
 func (m *FetchProjectsResponse) Reset()         { *m = FetchProjectsResponse{} }
 func (m *FetchProjectsResponse) String() string { return proto.CompactTextString(m) }
 func (*FetchProjectsResponse) ProtoMessage()    {}
 func (*FetchProjectsResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_690ecd8b3e17edf8, []int{3}
+	return fileDescriptor_690ecd8b3e17edf8, []int{4}
 }
 func (m *FetchProjectsResponse) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -261,7 +313,7 @@ func (m *FetchProjectsResponse) GetBaseRet() *BaseRet {
 	return nil
 }
 
-func (m *FetchProjectsResponse) GetData() []*Project {
+func (m *FetchProjectsResponse) GetData() *FetchProjectsRet {
 	if m != nil {
 		return m.Data
 	}
@@ -281,7 +333,7 @@ func (m *FetchGroupsRequest) Reset()         { *m = FetchGroupsRequest{} }
 func (m *FetchGroupsRequest) String() string { return proto.CompactTextString(m) }
 func (*FetchGroupsRequest) ProtoMessage()    {}
 func (*FetchGroupsRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_690ecd8b3e17edf8, []int{4}
+	return fileDescriptor_690ecd8b3e17edf8, []int{5}
 }
 func (m *FetchGroupsRequest) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -345,6 +397,58 @@ func (m *FetchGroupsRequest) GetGroupName() string {
 	return ""
 }
 
+type FetchGroupsRet struct {
+	Total int64    `protobuf:"varint,1,opt,name=total,proto3" json:"total,omitempty"`
+	List  []*Group `protobuf:"bytes,2,rep,name=list,proto3" json:"list,omitempty"`
+}
+
+func (m *FetchGroupsRet) Reset()         { *m = FetchGroupsRet{} }
+func (m *FetchGroupsRet) String() string { return proto.CompactTextString(m) }
+func (*FetchGroupsRet) ProtoMessage()    {}
+func (*FetchGroupsRet) Descriptor() ([]byte, []int) {
+	return fileDescriptor_690ecd8b3e17edf8, []int{6}
+}
+func (m *FetchGroupsRet) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *FetchGroupsRet) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_FetchGroupsRet.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *FetchGroupsRet) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_FetchGroupsRet.Merge(m, src)
+}
+func (m *FetchGroupsRet) XXX_Size() int {
+	return m.Size()
+}
+func (m *FetchGroupsRet) XXX_DiscardUnknown() {
+	xxx_messageInfo_FetchGroupsRet.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_FetchGroupsRet proto.InternalMessageInfo
+
+func (m *FetchGroupsRet) GetTotal() int64 {
+	if m != nil {
+		return m.Total
+	}
+	return 0
+}
+
+func (m *FetchGroupsRet) GetList() []*Group {
+	if m != nil {
+		return m.List
+	}
+	return nil
+}
+
 type Group struct {
 	ProjectKey  string `protobuf:"bytes,1,opt,name=project_key,json=projectKey,proto3" json:"project_key,omitempty"`
 	GroupKey    string `protobuf:"bytes,2,opt,name=group_key,json=groupKey,proto3" json:"group_key,omitempty"`
@@ -357,7 +461,7 @@ func (m *Group) Reset()         { *m = Group{} }
 func (m *Group) String() string { return proto.CompactTextString(m) }
 func (*Group) ProtoMessage()    {}
 func (*Group) Descriptor() ([]byte, []int) {
-	return fileDescriptor_690ecd8b3e17edf8, []int{5}
+	return fileDescriptor_690ecd8b3e17edf8, []int{7}
 }
 func (m *Group) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -423,15 +527,15 @@ func (m *Group) GetStatus() int64 {
 
 // swagger:model
 type FetchGroupsResponse struct {
-	BaseRet *BaseRet `protobuf:"bytes,1,opt,name=base_ret,json=baseRet,proto3" json:"base_ret,omitempty"`
-	Data    []*Group `protobuf:"bytes,2,rep,name=data,proto3" json:"data,omitempty"`
+	BaseRet *BaseRet        `protobuf:"bytes,1,opt,name=base_ret,json=baseRet,proto3" json:"base_ret,omitempty"`
+	Data    *FetchGroupsRet `protobuf:"bytes,2,opt,name=data,proto3" json:"data,omitempty"`
 }
 
 func (m *FetchGroupsResponse) Reset()         { *m = FetchGroupsResponse{} }
 func (m *FetchGroupsResponse) String() string { return proto.CompactTextString(m) }
 func (*FetchGroupsResponse) ProtoMessage()    {}
 func (*FetchGroupsResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_690ecd8b3e17edf8, []int{6}
+	return fileDescriptor_690ecd8b3e17edf8, []int{8}
 }
 func (m *FetchGroupsResponse) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -467,7 +571,7 @@ func (m *FetchGroupsResponse) GetBaseRet() *BaseRet {
 	return nil
 }
 
-func (m *FetchGroupsResponse) GetData() []*Group {
+func (m *FetchGroupsResponse) GetData() *FetchGroupsRet {
 	if m != nil {
 		return m.Data
 	}
@@ -487,7 +591,7 @@ func (m *FetchConfigsRequest) Reset()         { *m = FetchConfigsRequest{} }
 func (m *FetchConfigsRequest) String() string { return proto.CompactTextString(m) }
 func (*FetchConfigsRequest) ProtoMessage()    {}
 func (*FetchConfigsRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_690ecd8b3e17edf8, []int{7}
+	return fileDescriptor_690ecd8b3e17edf8, []int{9}
 }
 func (m *FetchConfigsRequest) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -551,6 +655,58 @@ func (m *FetchConfigsRequest) GetConfKey() string {
 	return ""
 }
 
+type FetchConfigsRet struct {
+	Total int64     `protobuf:"varint,1,opt,name=total,proto3" json:"total,omitempty"`
+	List  []*Config `protobuf:"bytes,2,rep,name=list,proto3" json:"list,omitempty"`
+}
+
+func (m *FetchConfigsRet) Reset()         { *m = FetchConfigsRet{} }
+func (m *FetchConfigsRet) String() string { return proto.CompactTextString(m) }
+func (*FetchConfigsRet) ProtoMessage()    {}
+func (*FetchConfigsRet) Descriptor() ([]byte, []int) {
+	return fileDescriptor_690ecd8b3e17edf8, []int{10}
+}
+func (m *FetchConfigsRet) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *FetchConfigsRet) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_FetchConfigsRet.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *FetchConfigsRet) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_FetchConfigsRet.Merge(m, src)
+}
+func (m *FetchConfigsRet) XXX_Size() int {
+	return m.Size()
+}
+func (m *FetchConfigsRet) XXX_DiscardUnknown() {
+	xxx_messageInfo_FetchConfigsRet.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_FetchConfigsRet proto.InternalMessageInfo
+
+func (m *FetchConfigsRet) GetTotal() int64 {
+	if m != nil {
+		return m.Total
+	}
+	return 0
+}
+
+func (m *FetchConfigsRet) GetList() []*Config {
+	if m != nil {
+		return m.List
+	}
+	return nil
+}
+
 type Config struct {
 	ProjectKey  string `protobuf:"bytes,1,opt,name=project_key,json=projectKey,proto3" json:"project_key,omitempty"`
 	GroupKey    string `protobuf:"bytes,2,opt,name=group_key,json=groupKey,proto3" json:"group_key,omitempty"`
@@ -565,7 +721,7 @@ func (m *Config) Reset()         { *m = Config{} }
 func (m *Config) String() string { return proto.CompactTextString(m) }
 func (*Config) ProtoMessage()    {}
 func (*Config) Descriptor() ([]byte, []int) {
-	return fileDescriptor_690ecd8b3e17edf8, []int{8}
+	return fileDescriptor_690ecd8b3e17edf8, []int{11}
 }
 func (m *Config) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -645,15 +801,15 @@ func (m *Config) GetStatus() int64 {
 
 // swagger:model
 type FetchConfigsResponse struct {
-	BaseRet *BaseRet  `protobuf:"bytes,1,opt,name=base_ret,json=baseRet,proto3" json:"base_ret,omitempty"`
-	Data    []*Config `protobuf:"bytes,2,rep,name=data,proto3" json:"data,omitempty"`
+	BaseRet *BaseRet         `protobuf:"bytes,1,opt,name=base_ret,json=baseRet,proto3" json:"base_ret,omitempty"`
+	Data    *FetchConfigsRet `protobuf:"bytes,2,opt,name=data,proto3" json:"data,omitempty"`
 }
 
 func (m *FetchConfigsResponse) Reset()         { *m = FetchConfigsResponse{} }
 func (m *FetchConfigsResponse) String() string { return proto.CompactTextString(m) }
 func (*FetchConfigsResponse) ProtoMessage()    {}
 func (*FetchConfigsResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_690ecd8b3e17edf8, []int{9}
+	return fileDescriptor_690ecd8b3e17edf8, []int{12}
 }
 func (m *FetchConfigsResponse) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -689,9 +845,539 @@ func (m *FetchConfigsResponse) GetBaseRet() *BaseRet {
 	return nil
 }
 
-func (m *FetchConfigsResponse) GetData() []*Config {
+func (m *FetchConfigsResponse) GetData() *FetchConfigsRet {
 	if m != nil {
 		return m.Data
+	}
+	return nil
+}
+
+// swagger:model
+type SaveProjectRequest struct {
+	Project *Project `protobuf:"bytes,1,opt,name=project,proto3" json:"project,omitempty"`
+	OpId    string   `protobuf:"bytes,2,opt,name=op_id,json=opId,proto3" json:"op_id,omitempty"`
+}
+
+func (m *SaveProjectRequest) Reset()         { *m = SaveProjectRequest{} }
+func (m *SaveProjectRequest) String() string { return proto.CompactTextString(m) }
+func (*SaveProjectRequest) ProtoMessage()    {}
+func (*SaveProjectRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_690ecd8b3e17edf8, []int{13}
+}
+func (m *SaveProjectRequest) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *SaveProjectRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_SaveProjectRequest.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *SaveProjectRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_SaveProjectRequest.Merge(m, src)
+}
+func (m *SaveProjectRequest) XXX_Size() int {
+	return m.Size()
+}
+func (m *SaveProjectRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_SaveProjectRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_SaveProjectRequest proto.InternalMessageInfo
+
+func (m *SaveProjectRequest) GetProject() *Project {
+	if m != nil {
+		return m.Project
+	}
+	return nil
+}
+
+func (m *SaveProjectRequest) GetOpId() string {
+	if m != nil {
+		return m.OpId
+	}
+	return ""
+}
+
+// swagger:model
+type SaveProjectResponse struct {
+	BaseRet *BaseRet `protobuf:"bytes,1,opt,name=base_ret,json=baseRet,proto3" json:"base_ret,omitempty"`
+}
+
+func (m *SaveProjectResponse) Reset()         { *m = SaveProjectResponse{} }
+func (m *SaveProjectResponse) String() string { return proto.CompactTextString(m) }
+func (*SaveProjectResponse) ProtoMessage()    {}
+func (*SaveProjectResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_690ecd8b3e17edf8, []int{14}
+}
+func (m *SaveProjectResponse) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *SaveProjectResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_SaveProjectResponse.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *SaveProjectResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_SaveProjectResponse.Merge(m, src)
+}
+func (m *SaveProjectResponse) XXX_Size() int {
+	return m.Size()
+}
+func (m *SaveProjectResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_SaveProjectResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_SaveProjectResponse proto.InternalMessageInfo
+
+func (m *SaveProjectResponse) GetBaseRet() *BaseRet {
+	if m != nil {
+		return m.BaseRet
+	}
+	return nil
+}
+
+// swagger:model
+type SaveGroupRequest struct {
+	Group *Group `protobuf:"bytes,1,opt,name=group,proto3" json:"group,omitempty"`
+	OpId  string `protobuf:"bytes,2,opt,name=op_id,json=opId,proto3" json:"op_id,omitempty"`
+}
+
+func (m *SaveGroupRequest) Reset()         { *m = SaveGroupRequest{} }
+func (m *SaveGroupRequest) String() string { return proto.CompactTextString(m) }
+func (*SaveGroupRequest) ProtoMessage()    {}
+func (*SaveGroupRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_690ecd8b3e17edf8, []int{15}
+}
+func (m *SaveGroupRequest) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *SaveGroupRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_SaveGroupRequest.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *SaveGroupRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_SaveGroupRequest.Merge(m, src)
+}
+func (m *SaveGroupRequest) XXX_Size() int {
+	return m.Size()
+}
+func (m *SaveGroupRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_SaveGroupRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_SaveGroupRequest proto.InternalMessageInfo
+
+func (m *SaveGroupRequest) GetGroup() *Group {
+	if m != nil {
+		return m.Group
+	}
+	return nil
+}
+
+func (m *SaveGroupRequest) GetOpId() string {
+	if m != nil {
+		return m.OpId
+	}
+	return ""
+}
+
+// swagger:model
+type SaveGroupResponse struct {
+	BaseRet *BaseRet `protobuf:"bytes,1,opt,name=base_ret,json=baseRet,proto3" json:"base_ret,omitempty"`
+}
+
+func (m *SaveGroupResponse) Reset()         { *m = SaveGroupResponse{} }
+func (m *SaveGroupResponse) String() string { return proto.CompactTextString(m) }
+func (*SaveGroupResponse) ProtoMessage()    {}
+func (*SaveGroupResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_690ecd8b3e17edf8, []int{16}
+}
+func (m *SaveGroupResponse) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *SaveGroupResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_SaveGroupResponse.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *SaveGroupResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_SaveGroupResponse.Merge(m, src)
+}
+func (m *SaveGroupResponse) XXX_Size() int {
+	return m.Size()
+}
+func (m *SaveGroupResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_SaveGroupResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_SaveGroupResponse proto.InternalMessageInfo
+
+func (m *SaveGroupResponse) GetBaseRet() *BaseRet {
+	if m != nil {
+		return m.BaseRet
+	}
+	return nil
+}
+
+// swagger:model
+type SaveConfigRequest struct {
+	Config *Config `protobuf:"bytes,1,opt,name=config,proto3" json:"config,omitempty"`
+	OpId   string  `protobuf:"bytes,2,opt,name=op_id,json=opId,proto3" json:"op_id,omitempty"`
+}
+
+func (m *SaveConfigRequest) Reset()         { *m = SaveConfigRequest{} }
+func (m *SaveConfigRequest) String() string { return proto.CompactTextString(m) }
+func (*SaveConfigRequest) ProtoMessage()    {}
+func (*SaveConfigRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_690ecd8b3e17edf8, []int{17}
+}
+func (m *SaveConfigRequest) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *SaveConfigRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_SaveConfigRequest.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *SaveConfigRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_SaveConfigRequest.Merge(m, src)
+}
+func (m *SaveConfigRequest) XXX_Size() int {
+	return m.Size()
+}
+func (m *SaveConfigRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_SaveConfigRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_SaveConfigRequest proto.InternalMessageInfo
+
+func (m *SaveConfigRequest) GetConfig() *Config {
+	if m != nil {
+		return m.Config
+	}
+	return nil
+}
+
+func (m *SaveConfigRequest) GetOpId() string {
+	if m != nil {
+		return m.OpId
+	}
+	return ""
+}
+
+// swagger:model
+type SaveConfigResponse struct {
+	BaseRet *BaseRet `protobuf:"bytes,1,opt,name=base_ret,json=baseRet,proto3" json:"base_ret,omitempty"`
+}
+
+func (m *SaveConfigResponse) Reset()         { *m = SaveConfigResponse{} }
+func (m *SaveConfigResponse) String() string { return proto.CompactTextString(m) }
+func (*SaveConfigResponse) ProtoMessage()    {}
+func (*SaveConfigResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_690ecd8b3e17edf8, []int{18}
+}
+func (m *SaveConfigResponse) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *SaveConfigResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_SaveConfigResponse.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *SaveConfigResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_SaveConfigResponse.Merge(m, src)
+}
+func (m *SaveConfigResponse) XXX_Size() int {
+	return m.Size()
+}
+func (m *SaveConfigResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_SaveConfigResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_SaveConfigResponse proto.InternalMessageInfo
+
+func (m *SaveConfigResponse) GetBaseRet() *BaseRet {
+	if m != nil {
+		return m.BaseRet
+	}
+	return nil
+}
+
+// swagger:model
+type PrePublishRequest struct {
+	ProjectKey string `protobuf:"bytes,1,opt,name=project_key,json=projectKey,proto3" json:"project_key,omitempty"`
+	GroupKey   string `protobuf:"bytes,2,opt,name=group_key,json=groupKey,proto3" json:"group_key,omitempty"`
+	ConfKey    string `protobuf:"bytes,3,opt,name=conf_key,json=confKey,proto3" json:"conf_key,omitempty"`
+	PreValue   string `protobuf:"bytes,4,opt,name=pre_value,json=preValue,proto3" json:"pre_value,omitempty"`
+	OpId       string `protobuf:"bytes,5,opt,name=op_id,json=opId,proto3" json:"op_id,omitempty"`
+}
+
+func (m *PrePublishRequest) Reset()         { *m = PrePublishRequest{} }
+func (m *PrePublishRequest) String() string { return proto.CompactTextString(m) }
+func (*PrePublishRequest) ProtoMessage()    {}
+func (*PrePublishRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_690ecd8b3e17edf8, []int{19}
+}
+func (m *PrePublishRequest) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *PrePublishRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_PrePublishRequest.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *PrePublishRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_PrePublishRequest.Merge(m, src)
+}
+func (m *PrePublishRequest) XXX_Size() int {
+	return m.Size()
+}
+func (m *PrePublishRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_PrePublishRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_PrePublishRequest proto.InternalMessageInfo
+
+func (m *PrePublishRequest) GetProjectKey() string {
+	if m != nil {
+		return m.ProjectKey
+	}
+	return ""
+}
+
+func (m *PrePublishRequest) GetGroupKey() string {
+	if m != nil {
+		return m.GroupKey
+	}
+	return ""
+}
+
+func (m *PrePublishRequest) GetConfKey() string {
+	if m != nil {
+		return m.ConfKey
+	}
+	return ""
+}
+
+func (m *PrePublishRequest) GetPreValue() string {
+	if m != nil {
+		return m.PreValue
+	}
+	return ""
+}
+
+func (m *PrePublishRequest) GetOpId() string {
+	if m != nil {
+		return m.OpId
+	}
+	return ""
+}
+
+// swagger:model
+type PrePublishResponse struct {
+	BaseRet *BaseRet `protobuf:"bytes,1,opt,name=base_ret,json=baseRet,proto3" json:"base_ret,omitempty"`
+}
+
+func (m *PrePublishResponse) Reset()         { *m = PrePublishResponse{} }
+func (m *PrePublishResponse) String() string { return proto.CompactTextString(m) }
+func (*PrePublishResponse) ProtoMessage()    {}
+func (*PrePublishResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_690ecd8b3e17edf8, []int{20}
+}
+func (m *PrePublishResponse) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *PrePublishResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_PrePublishResponse.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *PrePublishResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_PrePublishResponse.Merge(m, src)
+}
+func (m *PrePublishResponse) XXX_Size() int {
+	return m.Size()
+}
+func (m *PrePublishResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_PrePublishResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_PrePublishResponse proto.InternalMessageInfo
+
+func (m *PrePublishResponse) GetBaseRet() *BaseRet {
+	if m != nil {
+		return m.BaseRet
+	}
+	return nil
+}
+
+// swagger:model
+type PublishRequest struct {
+	ProjectKey string `protobuf:"bytes,1,opt,name=project_key,json=projectKey,proto3" json:"project_key,omitempty"`
+	GroupKey   string `protobuf:"bytes,2,opt,name=group_key,json=groupKey,proto3" json:"group_key,omitempty"`
+	ConfKey    string `protobuf:"bytes,3,opt,name=conf_key,json=confKey,proto3" json:"conf_key,omitempty"`
+	OpId       string `protobuf:"bytes,4,opt,name=op_id,json=opId,proto3" json:"op_id,omitempty"`
+}
+
+func (m *PublishRequest) Reset()         { *m = PublishRequest{} }
+func (m *PublishRequest) String() string { return proto.CompactTextString(m) }
+func (*PublishRequest) ProtoMessage()    {}
+func (*PublishRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_690ecd8b3e17edf8, []int{21}
+}
+func (m *PublishRequest) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *PublishRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_PublishRequest.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *PublishRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_PublishRequest.Merge(m, src)
+}
+func (m *PublishRequest) XXX_Size() int {
+	return m.Size()
+}
+func (m *PublishRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_PublishRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_PublishRequest proto.InternalMessageInfo
+
+func (m *PublishRequest) GetProjectKey() string {
+	if m != nil {
+		return m.ProjectKey
+	}
+	return ""
+}
+
+func (m *PublishRequest) GetGroupKey() string {
+	if m != nil {
+		return m.GroupKey
+	}
+	return ""
+}
+
+func (m *PublishRequest) GetConfKey() string {
+	if m != nil {
+		return m.ConfKey
+	}
+	return ""
+}
+
+func (m *PublishRequest) GetOpId() string {
+	if m != nil {
+		return m.OpId
+	}
+	return ""
+}
+
+// swagger:model
+type PublishResponse struct {
+	BaseRet *BaseRet `protobuf:"bytes,1,opt,name=base_ret,json=baseRet,proto3" json:"base_ret,omitempty"`
+}
+
+func (m *PublishResponse) Reset()         { *m = PublishResponse{} }
+func (m *PublishResponse) String() string { return proto.CompactTextString(m) }
+func (*PublishResponse) ProtoMessage()    {}
+func (*PublishResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_690ecd8b3e17edf8, []int{22}
+}
+func (m *PublishResponse) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *PublishResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_PublishResponse.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *PublishResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_PublishResponse.Merge(m, src)
+}
+func (m *PublishResponse) XXX_Size() int {
+	return m.Size()
+}
+func (m *PublishResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_PublishResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_PublishResponse proto.InternalMessageInfo
+
+func (m *PublishResponse) GetBaseRet() *BaseRet {
+	if m != nil {
+		return m.BaseRet
 	}
 	return nil
 }
@@ -707,7 +1393,7 @@ func (m *FetchMiniConfigRequest) Reset()         { *m = FetchMiniConfigRequest{}
 func (m *FetchMiniConfigRequest) String() string { return proto.CompactTextString(m) }
 func (*FetchMiniConfigRequest) ProtoMessage()    {}
 func (*FetchMiniConfigRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_690ecd8b3e17edf8, []int{10}
+	return fileDescriptor_690ecd8b3e17edf8, []int{23}
 }
 func (m *FetchMiniConfigRequest) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -765,7 +1451,7 @@ func (m *MiniConfig) Reset()         { *m = MiniConfig{} }
 func (m *MiniConfig) String() string { return proto.CompactTextString(m) }
 func (*MiniConfig) ProtoMessage()    {}
 func (*MiniConfig) Descriptor() ([]byte, []int) {
-	return fileDescriptor_690ecd8b3e17edf8, []int{11}
+	return fileDescriptor_690ecd8b3e17edf8, []int{24}
 }
 func (m *MiniConfig) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -811,7 +1497,7 @@ func (m *FetchMiniConfigResponse) Reset()         { *m = FetchMiniConfigResponse
 func (m *FetchMiniConfigResponse) String() string { return proto.CompactTextString(m) }
 func (*FetchMiniConfigResponse) ProtoMessage()    {}
 func (*FetchMiniConfigResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_690ecd8b3e17edf8, []int{12}
+	return fileDescriptor_690ecd8b3e17edf8, []int{25}
 }
 func (m *FetchMiniConfigResponse) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -857,14 +1543,27 @@ func (m *FetchMiniConfigResponse) GetData() *MiniConfig {
 func init() {
 	proto.RegisterType((*BaseRet)(nil), "fcc.serv.BaseRet")
 	proto.RegisterType((*FetchProjectsRequest)(nil), "fcc.serv.FetchProjectsRequest")
+	proto.RegisterType((*FetchProjectsRet)(nil), "fcc.serv.FetchProjectsRet")
 	proto.RegisterType((*Project)(nil), "fcc.serv.Project")
 	proto.RegisterType((*FetchProjectsResponse)(nil), "fcc.serv.FetchProjectsResponse")
 	proto.RegisterType((*FetchGroupsRequest)(nil), "fcc.serv.FetchGroupsRequest")
+	proto.RegisterType((*FetchGroupsRet)(nil), "fcc.serv.FetchGroupsRet")
 	proto.RegisterType((*Group)(nil), "fcc.serv.Group")
 	proto.RegisterType((*FetchGroupsResponse)(nil), "fcc.serv.FetchGroupsResponse")
 	proto.RegisterType((*FetchConfigsRequest)(nil), "fcc.serv.FetchConfigsRequest")
+	proto.RegisterType((*FetchConfigsRet)(nil), "fcc.serv.FetchConfigsRet")
 	proto.RegisterType((*Config)(nil), "fcc.serv.Config")
 	proto.RegisterType((*FetchConfigsResponse)(nil), "fcc.serv.FetchConfigsResponse")
+	proto.RegisterType((*SaveProjectRequest)(nil), "fcc.serv.SaveProjectRequest")
+	proto.RegisterType((*SaveProjectResponse)(nil), "fcc.serv.SaveProjectResponse")
+	proto.RegisterType((*SaveGroupRequest)(nil), "fcc.serv.SaveGroupRequest")
+	proto.RegisterType((*SaveGroupResponse)(nil), "fcc.serv.SaveGroupResponse")
+	proto.RegisterType((*SaveConfigRequest)(nil), "fcc.serv.SaveConfigRequest")
+	proto.RegisterType((*SaveConfigResponse)(nil), "fcc.serv.SaveConfigResponse")
+	proto.RegisterType((*PrePublishRequest)(nil), "fcc.serv.PrePublishRequest")
+	proto.RegisterType((*PrePublishResponse)(nil), "fcc.serv.PrePublishResponse")
+	proto.RegisterType((*PublishRequest)(nil), "fcc.serv.PublishRequest")
+	proto.RegisterType((*PublishResponse)(nil), "fcc.serv.PublishResponse")
 	proto.RegisterType((*FetchMiniConfigRequest)(nil), "fcc.serv.FetchMiniConfigRequest")
 	proto.RegisterType((*MiniConfig)(nil), "fcc.serv.MiniConfig")
 	proto.RegisterType((*FetchMiniConfigResponse)(nil), "fcc.serv.FetchMiniConfigResponse")
@@ -873,46 +1572,64 @@ func init() {
 func init() { proto.RegisterFile("fcc.proto", fileDescriptor_690ecd8b3e17edf8) }
 
 var fileDescriptor_690ecd8b3e17edf8 = []byte{
-	// 622 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xc4, 0x55, 0xcd, 0x6e, 0xd3, 0x4c,
-	0x14, 0xcd, 0xc4, 0xf9, 0xeb, 0x4d, 0x3f, 0xb5, 0xdf, 0x10, 0x8a, 0x09, 0xd4, 0x4d, 0x0d, 0x48,
-	0x5d, 0xa0, 0x20, 0x95, 0x37, 0x28, 0x52, 0x59, 0x94, 0x3f, 0x19, 0x09, 0xb1, 0x8b, 0x1c, 0xe7,
-	0x26, 0x75, 0x49, 0x6c, 0xc7, 0xe3, 0x44, 0xca, 0x13, 0xc0, 0x92, 0x07, 0x40, 0xf0, 0x3a, 0xac,
-	0x50, 0x97, 0xb0, 0x43, 0xc9, 0x8b, 0x20, 0xcf, 0x4c, 0x62, 0x8f, 0x43, 0x52, 0x14, 0x54, 0xb1,
-	0x9b, 0x99, 0x73, 0xef, 0x39, 0x37, 0xe7, 0x4c, 0xc6, 0xb0, 0xd5, 0x75, 0x9c, 0x66, 0x10, 0xfa,
-	0x91, 0x4f, 0x2b, 0xf1, 0x92, 0x61, 0x38, 0x36, 0x1f, 0x41, 0xf9, 0xc4, 0x66, 0x68, 0x61, 0x44,
-	0x29, 0x14, 0x1c, 0xbf, 0x83, 0x3a, 0x69, 0x90, 0x23, 0xcd, 0xe2, 0x6b, 0xba, 0x0b, 0xda, 0x80,
-	0xf5, 0xf4, 0x7c, 0x83, 0x1c, 0x6d, 0x59, 0xf1, 0xd2, 0xfc, 0x40, 0xa0, 0x76, 0x8a, 0x91, 0x73,
-	0xfe, 0x2a, 0xf4, 0x2f, 0xd0, 0x89, 0x98, 0x85, 0xc3, 0x11, 0xb2, 0x88, 0xd6, 0xa0, 0xd8, 0x77,
-	0x07, 0x6e, 0x24, 0xfb, 0xc5, 0x86, 0xee, 0x41, 0xc9, 0xef, 0x76, 0x19, 0x46, 0x9c, 0x43, 0xb3,
-	0xe4, 0x8e, 0x1e, 0x40, 0x35, 0x10, 0x04, 0xad, 0x77, 0x38, 0xd1, 0x35, 0x2e, 0x00, 0xf2, 0xe8,
-	0x0c, 0x27, 0xf4, 0x10, 0xb6, 0xe7, 0x05, 0x9e, 0x3d, 0x40, 0xbd, 0xc0, 0x2b, 0xe6, 0x4d, 0x2f,
-	0xec, 0x01, 0x9a, 0xef, 0x09, 0x94, 0xe5, 0x14, 0x59, 0x3e, 0x72, 0x25, 0x5f, 0x7e, 0x89, 0x8f,
-	0x36, 0xa0, 0xda, 0x41, 0xe6, 0x84, 0x6e, 0x10, 0xb9, 0xbe, 0x27, 0x67, 0x4a, 0x1f, 0xc5, 0xbf,
-	0x86, 0x45, 0x76, 0x34, 0x62, 0x7c, 0x1c, 0xcd, 0x92, 0x3b, 0xb3, 0x0f, 0x37, 0x33, 0x9e, 0xb0,
-	0xc0, 0xf7, 0x18, 0xd2, 0x87, 0x50, 0x69, 0xdb, 0x0c, 0x5b, 0x21, 0x0a, 0x5f, 0xaa, 0xc7, 0xff,
-	0x37, 0xe7, 0xde, 0x37, 0xa5, 0xf1, 0x56, 0xb9, 0x2d, 0x13, 0x78, 0x00, 0x85, 0x8e, 0x1d, 0xd9,
-	0x7a, 0xbe, 0xa1, 0xa9, 0x95, 0x92, 0xd7, 0xe2, 0xb0, 0xf9, 0x85, 0x00, 0xe5, 0x72, 0x4f, 0x43,
-	0x7f, 0x14, 0x5c, 0x57, 0x00, 0x77, 0x60, 0xab, 0x17, 0xf3, 0x73, 0x58, 0xb8, 0x5f, 0xe1, 0x07,
-	0x31, 0xb8, 0x0f, 0x20, 0x40, 0xee, 0x65, 0x91, 0xa3, 0xa2, 0x9c, 0x27, 0xf3, 0x99, 0x40, 0x91,
-	0x0f, 0x77, 0x75, 0x2e, 0x8a, 0x4c, 0x7e, 0xad, 0x8c, 0x96, 0x91, 0xc9, 0x06, 0x56, 0x58, 0x17,
-	0x58, 0x51, 0x09, 0xec, 0x1c, 0x6e, 0x28, 0x0e, 0x6e, 0x14, 0xd7, 0x3d, 0x25, 0xae, 0x9d, 0xa4,
-	0x92, 0xb3, 0xca, 0xb0, 0x3e, 0x11, 0x29, 0xf5, 0xc4, 0xf7, 0xba, 0x6e, 0xef, 0x9f, 0xa4, 0x75,
-	0x1b, 0x2a, 0x8e, 0xef, 0x75, 0x39, 0x26, 0xb2, 0x2a, 0xc7, 0xfb, 0x33, 0x9c, 0x98, 0xdf, 0x08,
-	0x94, 0xc4, 0x64, 0x7f, 0x19, 0x55, 0x5a, 0x43, 0x53, 0x34, 0xfe, 0x20, 0xa6, 0x1a, 0x14, 0xc7,
-	0x76, 0x7f, 0x34, 0xbf, 0x49, 0x62, 0x13, 0xeb, 0x05, 0x21, 0xb6, 0x04, 0x52, 0x12, 0x7a, 0x41,
-	0x88, 0x6f, 0x38, 0x98, 0x24, 0x5b, 0x56, 0x92, 0xbd, 0x90, 0xcf, 0xd3, 0xc2, 0xee, 0x8d, 0xa2,
-	0xbd, 0xaf, 0x44, 0xbb, 0x9b, 0x54, 0x0a, 0x5a, 0x99, 0xed, 0x10, 0xf6, 0xb8, 0xd6, 0x73, 0xd7,
-	0x73, 0x25, 0x20, 0xd3, 0xbd, 0x2e, 0x2f, 0x4d, 0x13, 0x20, 0x51, 0x4b, 0x7c, 0x23, 0x29, 0xdf,
-	0xcc, 0x21, 0xdc, 0x5a, 0x1a, 0x6b, 0x23, 0x17, 0x8e, 0x16, 0x2e, 0xc4, 0x95, 0xb5, 0xa4, 0x32,
-	0xc5, 0xcc, 0x2b, 0x8e, 0x7f, 0xe4, 0x01, 0x4e, 0x1d, 0xe7, 0x35, 0x86, 0x63, 0xd7, 0x41, 0x6a,
-	0xc1, 0x7f, 0xca, 0x7b, 0x48, 0x8d, 0xa4, 0xf7, 0x77, 0x1f, 0x8f, 0xfa, 0xc1, 0x4a, 0x5c, 0x0c,
-	0x6e, 0xe6, 0xe8, 0x33, 0xa8, 0xa6, 0xfe, 0xb2, 0xf4, 0x6e, 0xa6, 0x43, 0x79, 0x0b, 0xeb, 0xfb,
-	0x2b, 0xd0, 0x05, 0xdb, 0x4b, 0xd8, 0x4e, 0x5f, 0x13, 0x9a, 0x6d, 0x50, 0xff, 0xad, 0x75, 0x63,
-	0x15, 0xbc, 0x20, 0x7c, 0x0b, 0x3b, 0x19, 0xd3, 0x69, 0x23, 0xd3, 0xb4, 0x74, 0x4d, 0xea, 0x87,
-	0x6b, 0x2a, 0xe6, 0xcc, 0x27, 0xfa, 0xd7, 0xa9, 0x41, 0x2e, 0xa7, 0x06, 0xf9, 0x39, 0x35, 0xc8,
-	0xc7, 0x99, 0x91, 0xbb, 0x9c, 0x19, 0xb9, 0xef, 0x33, 0x23, 0xd7, 0x2e, 0xf1, 0xaf, 0xf9, 0xe3,
-	0x5f, 0x01, 0x00, 0x00, 0xff, 0xff, 0x84, 0xe8, 0xf6, 0x69, 0xda, 0x07, 0x00, 0x00,
+	// 912 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xc4, 0x57, 0xcd, 0x4e, 0xc3, 0x46,
+	0x10, 0x8e, 0xb1, 0x9d, 0x9f, 0x09, 0x85, 0xb0, 0xa4, 0x34, 0x04, 0x30, 0xc1, 0x2d, 0x52, 0xa4,
+	0xd2, 0x54, 0xa2, 0x0f, 0xd0, 0x16, 0x24, 0x2a, 0x44, 0xf9, 0x91, 0x91, 0x50, 0x6f, 0x91, 0xe3,
+	0x6c, 0xc0, 0x6d, 0x12, 0x3b, 0xb6, 0x13, 0x89, 0x4b, 0xaf, 0xed, 0xb1, 0x0f, 0x50, 0xd1, 0xc7,
+	0x69, 0x4f, 0x15, 0xc7, 0x1e, 0x2b, 0x78, 0x91, 0xca, 0xbb, 0x6b, 0x7b, 0xd7, 0x8e, 0xa1, 0x0a,
+	0xa2, 0xbd, 0x65, 0x77, 0x66, 0xbf, 0xfd, 0x66, 0xe6, 0xdb, 0x0f, 0x03, 0x95, 0x81, 0x65, 0x75,
+	0x5c, 0xcf, 0x09, 0x1c, 0x54, 0x0e, 0x7f, 0xfa, 0xd8, 0x9b, 0xe9, 0x9f, 0x43, 0xe9, 0xc8, 0xf4,
+	0xb1, 0x81, 0x03, 0x84, 0x40, 0xb1, 0x9c, 0x3e, 0x6e, 0x48, 0x2d, 0xa9, 0x2d, 0x1b, 0xe4, 0x37,
+	0xaa, 0x81, 0x3c, 0xf2, 0x6f, 0x1b, 0x4b, 0x2d, 0xa9, 0x5d, 0x31, 0xc2, 0x9f, 0xfa, 0xcf, 0x12,
+	0xd4, 0x4f, 0x70, 0x60, 0xdd, 0x5d, 0x79, 0xce, 0xf7, 0xd8, 0x0a, 0x7c, 0x03, 0x4f, 0xa6, 0xd8,
+	0x0f, 0x50, 0x1d, 0xd4, 0xa1, 0x3d, 0xb2, 0x03, 0x76, 0x9e, 0x2e, 0xd0, 0x06, 0x14, 0x9d, 0xc1,
+	0xc0, 0xc7, 0x01, 0xc1, 0x90, 0x0d, 0xb6, 0x42, 0xbb, 0x50, 0x75, 0x29, 0x40, 0xf7, 0x07, 0x7c,
+	0xdf, 0x90, 0xc9, 0x05, 0xc0, 0xb6, 0xce, 0xf0, 0x3d, 0xda, 0x83, 0xe5, 0x28, 0x61, 0x6c, 0x8e,
+	0x70, 0x43, 0x21, 0x19, 0xd1, 0xa1, 0x0b, 0x73, 0x84, 0xf5, 0x4b, 0xa8, 0xa5, 0x98, 0x10, 0x16,
+	0x81, 0x13, 0x98, 0xc3, 0x88, 0x05, 0x59, 0xa0, 0x7d, 0x50, 0x86, 0xb6, 0x1f, 0x72, 0x90, 0xdb,
+	0xd5, 0xc3, 0xb5, 0x4e, 0x54, 0x7e, 0x87, 0x1d, 0x35, 0x48, 0x58, 0xff, 0x49, 0x82, 0x12, 0xdb,
+	0x49, 0x13, 0x94, 0x5e, 0x25, 0xb8, 0x94, 0x21, 0x88, 0x5a, 0x50, 0xed, 0x63, 0xdf, 0xf2, 0x6c,
+	0x37, 0xb0, 0x9d, 0x31, 0x2b, 0x92, 0xdf, 0x0a, 0xdb, 0xe3, 0x07, 0x66, 0x30, 0xf5, 0x49, 0x7d,
+	0xb2, 0xc1, 0x56, 0xfa, 0x14, 0x3e, 0x4c, 0x95, 0xe6, 0xbb, 0xce, 0xd8, 0xc7, 0xe8, 0x00, 0xca,
+	0x3d, 0xd3, 0xc7, 0x5d, 0x0f, 0xd3, 0x46, 0x0b, 0xd5, 0xb0, 0x49, 0x1a, 0xa5, 0x1e, 0x1b, 0x69,
+	0x07, 0x94, 0xbe, 0x19, 0x98, 0x84, 0x5b, 0xf5, 0xb0, 0x99, 0x64, 0xa6, 0xfb, 0x66, 0x90, 0x3c,
+	0xfd, 0x37, 0x09, 0x10, 0x09, 0x7d, 0xe3, 0x39, 0x53, 0xf7, 0xbd, 0x46, 0xbb, 0x05, 0x95, 0xdb,
+	0x10, 0x9f, 0x84, 0xe9, 0x5c, 0xcb, 0x64, 0x23, 0x0c, 0xee, 0x00, 0xd0, 0x20, 0x69, 0xaa, 0x4a,
+	0xa2, 0x34, 0x9d, 0xcc, 0xfc, 0x0c, 0x56, 0x04, 0x82, 0x79, 0x13, 0xff, 0x58, 0x98, 0xf8, 0x6a,
+	0x52, 0x39, 0x39, 0xc8, 0xe6, 0xfd, 0x20, 0x81, 0x4a, 0xd6, 0xaf, 0x4f, 0x5b, 0xe0, 0xbc, 0xf4,
+	0x22, 0x67, 0x39, 0xc5, 0x39, 0x2d, 0x03, 0xe5, 0x25, 0x19, 0xa8, 0x82, 0x0c, 0x26, 0xb0, 0x2e,
+	0x54, 0xbb, 0x90, 0x08, 0x0e, 0x04, 0x11, 0x34, 0x52, 0x22, 0x88, 0x1b, 0xc9, 0x24, 0xf0, 0xab,
+	0xc4, 0xee, 0x3c, 0x76, 0xc6, 0x03, 0xfb, 0xf6, 0x7f, 0xd1, 0xc0, 0x26, 0x94, 0x2d, 0x67, 0x3c,
+	0x20, 0x31, 0xaa, 0x80, 0x52, 0xb8, 0x3e, 0xc3, 0xf7, 0xfa, 0x39, 0xac, 0x8a, 0xec, 0xf2, 0x04,
+	0xf0, 0x89, 0x20, 0x80, 0x5a, 0x52, 0x35, 0x3d, 0xc9, 0x14, 0xf0, 0xa7, 0x04, 0x45, 0xba, 0xf1,
+	0x46, 0x09, 0xf0, 0x94, 0x65, 0x81, 0xf2, 0xbf, 0x18, 0x7f, 0x1d, 0xd4, 0x99, 0x39, 0x9c, 0x46,
+	0x72, 0xa7, 0x8b, 0xf0, 0x3e, 0xd7, 0xc3, 0x5d, 0x1a, 0x29, 0xd2, 0xfb, 0x5c, 0x0f, 0xdf, 0x90,
+	0x60, 0xa2, 0x98, 0x92, 0xa0, 0x18, 0x9f, 0xb9, 0x73, 0xdc, 0x9f, 0x85, 0x24, 0xf3, 0x99, 0x20,
+	0x99, 0xcd, 0x94, 0x64, 0x92, 0xde, 0x33, 0xcd, 0xdc, 0x00, 0xba, 0x36, 0x67, 0x38, 0x32, 0x53,
+	0xa6, 0x98, 0x4f, 0xa1, 0xc4, 0xba, 0x97, 0xbd, 0x31, 0x4a, 0x8d, 0x32, 0xd0, 0x3a, 0xa8, 0x8e,
+	0xdb, 0xb5, 0xfb, 0xac, 0xb1, 0x8a, 0xe3, 0x9e, 0xf6, 0xf5, 0x63, 0x58, 0x17, 0x70, 0x17, 0xa9,
+	0x45, 0xbf, 0x80, 0x5a, 0x08, 0x42, 0xdf, 0x3d, 0xa3, 0xb6, 0x0f, 0x2a, 0x99, 0x1c, 0x3b, 0x9e,
+	0xb1, 0x07, 0x1a, 0x9d, 0x4f, 0xea, 0x6b, 0x58, 0xe3, 0xf0, 0x16, 0xa2, 0x64, 0x50, 0x08, 0xa6,
+	0x44, 0xc6, 0xa9, 0x0d, 0x45, 0x8b, 0x6c, 0x30, 0x80, 0xac, 0x64, 0x59, 0x7c, 0x3e, 0xad, 0x23,
+	0x3a, 0x83, 0x08, 0x73, 0x21, 0x5e, 0x0f, 0x12, 0xac, 0x5d, 0x79, 0xf8, 0x6a, 0xda, 0x1b, 0xda,
+	0xfe, 0x5d, 0x44, 0xec, 0xdd, 0x1e, 0x86, 0x20, 0x70, 0x25, 0x25, 0xf0, 0xb8, 0x48, 0x55, 0x2c,
+	0x92, 0xe7, 0xb7, 0x50, 0x91, 0x3f, 0xc2, 0xca, 0x7f, 0x55, 0x60, 0x5c, 0x83, 0xc2, 0xd5, 0xf0,
+	0x25, 0xac, 0xbe, 0xad, 0x80, 0x09, 0x6c, 0x90, 0x67, 0x78, 0x6e, 0x8f, 0x6d, 0x51, 0x42, 0xef,
+	0x55, 0x88, 0xae, 0x03, 0x24, 0xb7, 0x25, 0x76, 0x25, 0x71, 0x76, 0xa5, 0x4f, 0xe0, 0xa3, 0x0c,
+	0xad, 0x85, 0xcc, 0xa7, 0x2d, 0x98, 0x4f, 0x3d, 0xc9, 0xe4, 0x90, 0x49, 0xc6, 0xe1, 0xef, 0x2a,
+	0xc0, 0x89, 0x65, 0x5d, 0x63, 0x6f, 0x66, 0x5b, 0x18, 0x19, 0xf0, 0x81, 0xf0, 0x5d, 0x83, 0xb4,
+	0xdc, 0x0f, 0x1e, 0xd2, 0xaf, 0xe6, 0x6e, 0x6e, 0x9c, 0x12, 0xd7, 0x0b, 0xe8, 0x5b, 0xa8, 0x72,
+	0x7f, 0x26, 0xd1, 0x76, 0xce, 0x5f, 0x4f, 0x8a, 0xb7, 0x93, 0x13, 0x8d, 0xd1, 0x2e, 0x61, 0x99,
+	0x77, 0x50, 0xb4, 0x93, 0xe7, 0xac, 0x14, 0x4f, 0xcb, 0x0b, 0xf3, 0xf4, 0x38, 0x87, 0xe4, 0xe9,
+	0x65, 0x0d, 0x99, 0xa7, 0x37, 0xc7, 0x56, 0xf5, 0x02, 0x3a, 0x81, 0x4a, 0x6c, 0x6d, 0xa8, 0x29,
+	0x66, 0xf3, 0xfe, 0xd9, 0xdc, 0x9a, 0x1b, 0x8b, 0x71, 0x4e, 0x01, 0x12, 0x2f, 0x42, 0xa9, 0x64,
+	0x41, 0xb2, 0xcd, 0xed, 0xf9, 0x41, 0x1e, 0x2a, 0x79, 0xf1, 0x3c, 0x54, 0xc6, 0xa7, 0x78, 0xa8,
+	0xac, 0x49, 0xe8, 0x05, 0xf4, 0x15, 0x94, 0x22, 0x1c, 0xee, 0x23, 0x28, 0x05, 0xb2, 0x39, 0x27,
+	0x12, 0x23, 0x7c, 0xc7, 0x3e, 0x3e, 0xb8, 0xb7, 0xd0, 0x4a, 0x8d, 0x28, 0xf3, 0x28, 0x9b, 0x7b,
+	0x2f, 0x64, 0x44, 0xc8, 0x47, 0x8d, 0x3f, 0x9e, 0x34, 0xe9, 0xf1, 0x49, 0x93, 0xfe, 0x7e, 0xd2,
+	0xa4, 0x5f, 0x9e, 0xb5, 0xc2, 0xe3, 0xb3, 0x56, 0xf8, 0xeb, 0x59, 0x2b, 0xf4, 0x8a, 0xe4, 0x3f,
+	0xb6, 0x2f, 0xfe, 0x09, 0x00, 0x00, 0xff, 0xff, 0x58, 0xcf, 0x62, 0x6d, 0xbe, 0x0d, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -930,6 +1647,11 @@ type FccServiceClient interface {
 	FetchProjects(ctx context.Context, in *FetchProjectsRequest, opts ...grpc.CallOption) (*FetchProjectsResponse, error)
 	FetchGroups(ctx context.Context, in *FetchGroupsRequest, opts ...grpc.CallOption) (*FetchGroupsResponse, error)
 	FetchConfigs(ctx context.Context, in *FetchConfigsRequest, opts ...grpc.CallOption) (*FetchConfigsResponse, error)
+	SaveProject(ctx context.Context, in *SaveProjectRequest, opts ...grpc.CallOption) (*SaveProjectResponse, error)
+	SaveGroup(ctx context.Context, in *SaveGroupRequest, opts ...grpc.CallOption) (*SaveGroupResponse, error)
+	SaveConfig(ctx context.Context, in *SaveConfigRequest, opts ...grpc.CallOption) (*SaveConfigResponse, error)
+	PrePublish(ctx context.Context, in *PrePublishRequest, opts ...grpc.CallOption) (*PrePublishResponse, error)
+	Publish(ctx context.Context, in *PublishRequest, opts ...grpc.CallOption) (*PublishResponse, error)
 	FetchMiniConfig(ctx context.Context, in *FetchMiniConfigRequest, opts ...grpc.CallOption) (*FetchMiniConfigResponse, error)
 }
 
@@ -968,6 +1690,51 @@ func (c *fccServiceClient) FetchConfigs(ctx context.Context, in *FetchConfigsReq
 	return out, nil
 }
 
+func (c *fccServiceClient) SaveProject(ctx context.Context, in *SaveProjectRequest, opts ...grpc.CallOption) (*SaveProjectResponse, error) {
+	out := new(SaveProjectResponse)
+	err := c.cc.Invoke(ctx, "/fcc.serv.FccService/SaveProject", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *fccServiceClient) SaveGroup(ctx context.Context, in *SaveGroupRequest, opts ...grpc.CallOption) (*SaveGroupResponse, error) {
+	out := new(SaveGroupResponse)
+	err := c.cc.Invoke(ctx, "/fcc.serv.FccService/SaveGroup", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *fccServiceClient) SaveConfig(ctx context.Context, in *SaveConfigRequest, opts ...grpc.CallOption) (*SaveConfigResponse, error) {
+	out := new(SaveConfigResponse)
+	err := c.cc.Invoke(ctx, "/fcc.serv.FccService/SaveConfig", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *fccServiceClient) PrePublish(ctx context.Context, in *PrePublishRequest, opts ...grpc.CallOption) (*PrePublishResponse, error) {
+	out := new(PrePublishResponse)
+	err := c.cc.Invoke(ctx, "/fcc.serv.FccService/PrePublish", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *fccServiceClient) Publish(ctx context.Context, in *PublishRequest, opts ...grpc.CallOption) (*PublishResponse, error) {
+	out := new(PublishResponse)
+	err := c.cc.Invoke(ctx, "/fcc.serv.FccService/Publish", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *fccServiceClient) FetchMiniConfig(ctx context.Context, in *FetchMiniConfigRequest, opts ...grpc.CallOption) (*FetchMiniConfigResponse, error) {
 	out := new(FetchMiniConfigResponse)
 	err := c.cc.Invoke(ctx, "/fcc.serv.FccService/FetchMiniConfig", in, out, opts...)
@@ -982,6 +1749,11 @@ type FccServiceServer interface {
 	FetchProjects(context.Context, *FetchProjectsRequest) (*FetchProjectsResponse, error)
 	FetchGroups(context.Context, *FetchGroupsRequest) (*FetchGroupsResponse, error)
 	FetchConfigs(context.Context, *FetchConfigsRequest) (*FetchConfigsResponse, error)
+	SaveProject(context.Context, *SaveProjectRequest) (*SaveProjectResponse, error)
+	SaveGroup(context.Context, *SaveGroupRequest) (*SaveGroupResponse, error)
+	SaveConfig(context.Context, *SaveConfigRequest) (*SaveConfigResponse, error)
+	PrePublish(context.Context, *PrePublishRequest) (*PrePublishResponse, error)
+	Publish(context.Context, *PublishRequest) (*PublishResponse, error)
 	FetchMiniConfig(context.Context, *FetchMiniConfigRequest) (*FetchMiniConfigResponse, error)
 }
 
@@ -997,6 +1769,21 @@ func (*UnimplementedFccServiceServer) FetchGroups(ctx context.Context, req *Fetc
 }
 func (*UnimplementedFccServiceServer) FetchConfigs(ctx context.Context, req *FetchConfigsRequest) (*FetchConfigsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FetchConfigs not implemented")
+}
+func (*UnimplementedFccServiceServer) SaveProject(ctx context.Context, req *SaveProjectRequest) (*SaveProjectResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SaveProject not implemented")
+}
+func (*UnimplementedFccServiceServer) SaveGroup(ctx context.Context, req *SaveGroupRequest) (*SaveGroupResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SaveGroup not implemented")
+}
+func (*UnimplementedFccServiceServer) SaveConfig(ctx context.Context, req *SaveConfigRequest) (*SaveConfigResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SaveConfig not implemented")
+}
+func (*UnimplementedFccServiceServer) PrePublish(ctx context.Context, req *PrePublishRequest) (*PrePublishResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PrePublish not implemented")
+}
+func (*UnimplementedFccServiceServer) Publish(ctx context.Context, req *PublishRequest) (*PublishResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Publish not implemented")
 }
 func (*UnimplementedFccServiceServer) FetchMiniConfig(ctx context.Context, req *FetchMiniConfigRequest) (*FetchMiniConfigResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FetchMiniConfig not implemented")
@@ -1060,6 +1847,96 @@ func _FccService_FetchConfigs_Handler(srv interface{}, ctx context.Context, dec 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _FccService_SaveProject_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SaveProjectRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(FccServiceServer).SaveProject(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/fcc.serv.FccService/SaveProject",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(FccServiceServer).SaveProject(ctx, req.(*SaveProjectRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _FccService_SaveGroup_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SaveGroupRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(FccServiceServer).SaveGroup(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/fcc.serv.FccService/SaveGroup",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(FccServiceServer).SaveGroup(ctx, req.(*SaveGroupRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _FccService_SaveConfig_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SaveConfigRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(FccServiceServer).SaveConfig(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/fcc.serv.FccService/SaveConfig",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(FccServiceServer).SaveConfig(ctx, req.(*SaveConfigRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _FccService_PrePublish_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PrePublishRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(FccServiceServer).PrePublish(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/fcc.serv.FccService/PrePublish",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(FccServiceServer).PrePublish(ctx, req.(*PrePublishRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _FccService_Publish_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PublishRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(FccServiceServer).Publish(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/fcc.serv.FccService/Publish",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(FccServiceServer).Publish(ctx, req.(*PublishRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _FccService_FetchMiniConfig_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(FetchMiniConfigRequest)
 	if err := dec(in); err != nil {
@@ -1093,6 +1970,26 @@ var _FccService_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "FetchConfigs",
 			Handler:    _FccService_FetchConfigs_Handler,
+		},
+		{
+			MethodName: "SaveProject",
+			Handler:    _FccService_SaveProject_Handler,
+		},
+		{
+			MethodName: "SaveGroup",
+			Handler:    _FccService_SaveGroup_Handler,
+		},
+		{
+			MethodName: "SaveConfig",
+			Handler:    _FccService_SaveConfig_Handler,
+		},
+		{
+			MethodName: "PrePublish",
+			Handler:    _FccService_PrePublish_Handler,
+		},
+		{
+			MethodName: "Publish",
+			Handler:    _FccService_Publish_Handler,
 		},
 		{
 			MethodName: "FetchMiniConfig",
@@ -1185,6 +2082,48 @@ func (m *FetchProjectsRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	return len(dAtA) - i, nil
 }
 
+func (m *FetchProjectsRet) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *FetchProjectsRet) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *FetchProjectsRet) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if len(m.List) > 0 {
+		for iNdEx := len(m.List) - 1; iNdEx >= 0; iNdEx-- {
+			{
+				size, err := m.List[iNdEx].MarshalToSizedBuffer(dAtA[:i])
+				if err != nil {
+					return 0, err
+				}
+				i -= size
+				i = encodeVarintFcc(dAtA, i, uint64(size))
+			}
+			i--
+			dAtA[i] = 0x12
+		}
+	}
+	if m.Total != 0 {
+		i = encodeVarintFcc(dAtA, i, uint64(m.Total))
+		i--
+		dAtA[i] = 0x8
+	}
+	return len(dAtA) - i, nil
+}
+
 func (m *Project) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
@@ -1254,19 +2193,17 @@ func (m *FetchProjectsResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	_ = i
 	var l int
 	_ = l
-	if len(m.Data) > 0 {
-		for iNdEx := len(m.Data) - 1; iNdEx >= 0; iNdEx-- {
-			{
-				size, err := m.Data[iNdEx].MarshalToSizedBuffer(dAtA[:i])
-				if err != nil {
-					return 0, err
-				}
-				i -= size
-				i = encodeVarintFcc(dAtA, i, uint64(size))
+	if m.Data != nil {
+		{
+			size, err := m.Data.MarshalToSizedBuffer(dAtA[:i])
+			if err != nil {
+				return 0, err
 			}
-			i--
-			dAtA[i] = 0x12
+			i -= size
+			i = encodeVarintFcc(dAtA, i, uint64(size))
 		}
+		i--
+		dAtA[i] = 0x12
 	}
 	if m.BaseRet != nil {
 		{
@@ -1331,6 +2268,48 @@ func (m *FetchGroupsRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	}
 	if m.Limit != 0 {
 		i = encodeVarintFcc(dAtA, i, uint64(m.Limit))
+		i--
+		dAtA[i] = 0x8
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *FetchGroupsRet) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *FetchGroupsRet) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *FetchGroupsRet) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if len(m.List) > 0 {
+		for iNdEx := len(m.List) - 1; iNdEx >= 0; iNdEx-- {
+			{
+				size, err := m.List[iNdEx].MarshalToSizedBuffer(dAtA[:i])
+				if err != nil {
+					return 0, err
+				}
+				i -= size
+				i = encodeVarintFcc(dAtA, i, uint64(size))
+			}
+			i--
+			dAtA[i] = 0x12
+		}
+	}
+	if m.Total != 0 {
+		i = encodeVarintFcc(dAtA, i, uint64(m.Total))
 		i--
 		dAtA[i] = 0x8
 	}
@@ -1413,19 +2392,17 @@ func (m *FetchGroupsResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	_ = i
 	var l int
 	_ = l
-	if len(m.Data) > 0 {
-		for iNdEx := len(m.Data) - 1; iNdEx >= 0; iNdEx-- {
-			{
-				size, err := m.Data[iNdEx].MarshalToSizedBuffer(dAtA[:i])
-				if err != nil {
-					return 0, err
-				}
-				i -= size
-				i = encodeVarintFcc(dAtA, i, uint64(size))
+	if m.Data != nil {
+		{
+			size, err := m.Data.MarshalToSizedBuffer(dAtA[:i])
+			if err != nil {
+				return 0, err
 			}
-			i--
-			dAtA[i] = 0x12
+			i -= size
+			i = encodeVarintFcc(dAtA, i, uint64(size))
 		}
+		i--
+		dAtA[i] = 0x12
 	}
 	if m.BaseRet != nil {
 		{
@@ -1490,6 +2467,48 @@ func (m *FetchConfigsRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	}
 	if m.Limit != 0 {
 		i = encodeVarintFcc(dAtA, i, uint64(m.Limit))
+		i--
+		dAtA[i] = 0x8
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *FetchConfigsRet) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *FetchConfigsRet) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *FetchConfigsRet) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if len(m.List) > 0 {
+		for iNdEx := len(m.List) - 1; iNdEx >= 0; iNdEx-- {
+			{
+				size, err := m.List[iNdEx].MarshalToSizedBuffer(dAtA[:i])
+				if err != nil {
+					return 0, err
+				}
+				i -= size
+				i = encodeVarintFcc(dAtA, i, uint64(size))
+			}
+			i--
+			dAtA[i] = 0x12
+		}
+	}
+	if m.Total != 0 {
+		i = encodeVarintFcc(dAtA, i, uint64(m.Total))
 		i--
 		dAtA[i] = 0x8
 	}
@@ -1586,20 +2605,428 @@ func (m *FetchConfigsResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	_ = i
 	var l int
 	_ = l
-	if len(m.Data) > 0 {
-		for iNdEx := len(m.Data) - 1; iNdEx >= 0; iNdEx-- {
-			{
-				size, err := m.Data[iNdEx].MarshalToSizedBuffer(dAtA[:i])
-				if err != nil {
-					return 0, err
-				}
-				i -= size
-				i = encodeVarintFcc(dAtA, i, uint64(size))
+	if m.Data != nil {
+		{
+			size, err := m.Data.MarshalToSizedBuffer(dAtA[:i])
+			if err != nil {
+				return 0, err
 			}
-			i--
-			dAtA[i] = 0x12
+			i -= size
+			i = encodeVarintFcc(dAtA, i, uint64(size))
 		}
+		i--
+		dAtA[i] = 0x12
 	}
+	if m.BaseRet != nil {
+		{
+			size, err := m.BaseRet.MarshalToSizedBuffer(dAtA[:i])
+			if err != nil {
+				return 0, err
+			}
+			i -= size
+			i = encodeVarintFcc(dAtA, i, uint64(size))
+		}
+		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *SaveProjectRequest) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *SaveProjectRequest) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *SaveProjectRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if len(m.OpId) > 0 {
+		i -= len(m.OpId)
+		copy(dAtA[i:], m.OpId)
+		i = encodeVarintFcc(dAtA, i, uint64(len(m.OpId)))
+		i--
+		dAtA[i] = 0x12
+	}
+	if m.Project != nil {
+		{
+			size, err := m.Project.MarshalToSizedBuffer(dAtA[:i])
+			if err != nil {
+				return 0, err
+			}
+			i -= size
+			i = encodeVarintFcc(dAtA, i, uint64(size))
+		}
+		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *SaveProjectResponse) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *SaveProjectResponse) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *SaveProjectResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.BaseRet != nil {
+		{
+			size, err := m.BaseRet.MarshalToSizedBuffer(dAtA[:i])
+			if err != nil {
+				return 0, err
+			}
+			i -= size
+			i = encodeVarintFcc(dAtA, i, uint64(size))
+		}
+		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *SaveGroupRequest) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *SaveGroupRequest) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *SaveGroupRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if len(m.OpId) > 0 {
+		i -= len(m.OpId)
+		copy(dAtA[i:], m.OpId)
+		i = encodeVarintFcc(dAtA, i, uint64(len(m.OpId)))
+		i--
+		dAtA[i] = 0x12
+	}
+	if m.Group != nil {
+		{
+			size, err := m.Group.MarshalToSizedBuffer(dAtA[:i])
+			if err != nil {
+				return 0, err
+			}
+			i -= size
+			i = encodeVarintFcc(dAtA, i, uint64(size))
+		}
+		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *SaveGroupResponse) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *SaveGroupResponse) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *SaveGroupResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.BaseRet != nil {
+		{
+			size, err := m.BaseRet.MarshalToSizedBuffer(dAtA[:i])
+			if err != nil {
+				return 0, err
+			}
+			i -= size
+			i = encodeVarintFcc(dAtA, i, uint64(size))
+		}
+		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *SaveConfigRequest) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *SaveConfigRequest) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *SaveConfigRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if len(m.OpId) > 0 {
+		i -= len(m.OpId)
+		copy(dAtA[i:], m.OpId)
+		i = encodeVarintFcc(dAtA, i, uint64(len(m.OpId)))
+		i--
+		dAtA[i] = 0x12
+	}
+	if m.Config != nil {
+		{
+			size, err := m.Config.MarshalToSizedBuffer(dAtA[:i])
+			if err != nil {
+				return 0, err
+			}
+			i -= size
+			i = encodeVarintFcc(dAtA, i, uint64(size))
+		}
+		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *SaveConfigResponse) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *SaveConfigResponse) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *SaveConfigResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.BaseRet != nil {
+		{
+			size, err := m.BaseRet.MarshalToSizedBuffer(dAtA[:i])
+			if err != nil {
+				return 0, err
+			}
+			i -= size
+			i = encodeVarintFcc(dAtA, i, uint64(size))
+		}
+		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *PrePublishRequest) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *PrePublishRequest) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *PrePublishRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if len(m.OpId) > 0 {
+		i -= len(m.OpId)
+		copy(dAtA[i:], m.OpId)
+		i = encodeVarintFcc(dAtA, i, uint64(len(m.OpId)))
+		i--
+		dAtA[i] = 0x2a
+	}
+	if len(m.PreValue) > 0 {
+		i -= len(m.PreValue)
+		copy(dAtA[i:], m.PreValue)
+		i = encodeVarintFcc(dAtA, i, uint64(len(m.PreValue)))
+		i--
+		dAtA[i] = 0x22
+	}
+	if len(m.ConfKey) > 0 {
+		i -= len(m.ConfKey)
+		copy(dAtA[i:], m.ConfKey)
+		i = encodeVarintFcc(dAtA, i, uint64(len(m.ConfKey)))
+		i--
+		dAtA[i] = 0x1a
+	}
+	if len(m.GroupKey) > 0 {
+		i -= len(m.GroupKey)
+		copy(dAtA[i:], m.GroupKey)
+		i = encodeVarintFcc(dAtA, i, uint64(len(m.GroupKey)))
+		i--
+		dAtA[i] = 0x12
+	}
+	if len(m.ProjectKey) > 0 {
+		i -= len(m.ProjectKey)
+		copy(dAtA[i:], m.ProjectKey)
+		i = encodeVarintFcc(dAtA, i, uint64(len(m.ProjectKey)))
+		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *PrePublishResponse) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *PrePublishResponse) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *PrePublishResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.BaseRet != nil {
+		{
+			size, err := m.BaseRet.MarshalToSizedBuffer(dAtA[:i])
+			if err != nil {
+				return 0, err
+			}
+			i -= size
+			i = encodeVarintFcc(dAtA, i, uint64(size))
+		}
+		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *PublishRequest) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *PublishRequest) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *PublishRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if len(m.OpId) > 0 {
+		i -= len(m.OpId)
+		copy(dAtA[i:], m.OpId)
+		i = encodeVarintFcc(dAtA, i, uint64(len(m.OpId)))
+		i--
+		dAtA[i] = 0x22
+	}
+	if len(m.ConfKey) > 0 {
+		i -= len(m.ConfKey)
+		copy(dAtA[i:], m.ConfKey)
+		i = encodeVarintFcc(dAtA, i, uint64(len(m.ConfKey)))
+		i--
+		dAtA[i] = 0x1a
+	}
+	if len(m.GroupKey) > 0 {
+		i -= len(m.GroupKey)
+		copy(dAtA[i:], m.GroupKey)
+		i = encodeVarintFcc(dAtA, i, uint64(len(m.GroupKey)))
+		i--
+		dAtA[i] = 0x12
+	}
+	if len(m.ProjectKey) > 0 {
+		i -= len(m.ProjectKey)
+		copy(dAtA[i:], m.ProjectKey)
+		i = encodeVarintFcc(dAtA, i, uint64(len(m.ProjectKey)))
+		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *PublishResponse) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *PublishResponse) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *PublishResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
 	if m.BaseRet != nil {
 		{
 			size, err := m.BaseRet.MarshalToSizedBuffer(dAtA[:i])
@@ -1786,6 +3213,24 @@ func (m *FetchProjectsRequest) Size() (n int) {
 	return n
 }
 
+func (m *FetchProjectsRet) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if m.Total != 0 {
+		n += 1 + sovFcc(uint64(m.Total))
+	}
+	if len(m.List) > 0 {
+		for _, e := range m.List {
+			l = e.Size()
+			n += 1 + l + sovFcc(uint64(l))
+		}
+	}
+	return n
+}
+
 func (m *Project) Size() (n int) {
 	if m == nil {
 		return 0
@@ -1820,11 +3265,9 @@ func (m *FetchProjectsResponse) Size() (n int) {
 		l = m.BaseRet.Size()
 		n += 1 + l + sovFcc(uint64(l))
 	}
-	if len(m.Data) > 0 {
-		for _, e := range m.Data {
-			l = e.Size()
-			n += 1 + l + sovFcc(uint64(l))
-		}
+	if m.Data != nil {
+		l = m.Data.Size()
+		n += 1 + l + sovFcc(uint64(l))
 	}
 	return n
 }
@@ -1852,6 +3295,24 @@ func (m *FetchGroupsRequest) Size() (n int) {
 	l = len(m.GroupName)
 	if l > 0 {
 		n += 1 + l + sovFcc(uint64(l))
+	}
+	return n
+}
+
+func (m *FetchGroupsRet) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if m.Total != 0 {
+		n += 1 + sovFcc(uint64(m.Total))
+	}
+	if len(m.List) > 0 {
+		for _, e := range m.List {
+			l = e.Size()
+			n += 1 + l + sovFcc(uint64(l))
+		}
 	}
 	return n
 }
@@ -1894,11 +3355,9 @@ func (m *FetchGroupsResponse) Size() (n int) {
 		l = m.BaseRet.Size()
 		n += 1 + l + sovFcc(uint64(l))
 	}
-	if len(m.Data) > 0 {
-		for _, e := range m.Data {
-			l = e.Size()
-			n += 1 + l + sovFcc(uint64(l))
-		}
+	if m.Data != nil {
+		l = m.Data.Size()
+		n += 1 + l + sovFcc(uint64(l))
 	}
 	return n
 }
@@ -1926,6 +3385,24 @@ func (m *FetchConfigsRequest) Size() (n int) {
 	l = len(m.ConfKey)
 	if l > 0 {
 		n += 1 + l + sovFcc(uint64(l))
+	}
+	return n
+}
+
+func (m *FetchConfigsRet) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if m.Total != 0 {
+		n += 1 + sovFcc(uint64(m.Total))
+	}
+	if len(m.List) > 0 {
+		for _, e := range m.List {
+			l = e.Size()
+			n += 1 + l + sovFcc(uint64(l))
+		}
 	}
 	return n
 }
@@ -1976,11 +3453,179 @@ func (m *FetchConfigsResponse) Size() (n int) {
 		l = m.BaseRet.Size()
 		n += 1 + l + sovFcc(uint64(l))
 	}
-	if len(m.Data) > 0 {
-		for _, e := range m.Data {
-			l = e.Size()
-			n += 1 + l + sovFcc(uint64(l))
-		}
+	if m.Data != nil {
+		l = m.Data.Size()
+		n += 1 + l + sovFcc(uint64(l))
+	}
+	return n
+}
+
+func (m *SaveProjectRequest) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if m.Project != nil {
+		l = m.Project.Size()
+		n += 1 + l + sovFcc(uint64(l))
+	}
+	l = len(m.OpId)
+	if l > 0 {
+		n += 1 + l + sovFcc(uint64(l))
+	}
+	return n
+}
+
+func (m *SaveProjectResponse) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if m.BaseRet != nil {
+		l = m.BaseRet.Size()
+		n += 1 + l + sovFcc(uint64(l))
+	}
+	return n
+}
+
+func (m *SaveGroupRequest) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if m.Group != nil {
+		l = m.Group.Size()
+		n += 1 + l + sovFcc(uint64(l))
+	}
+	l = len(m.OpId)
+	if l > 0 {
+		n += 1 + l + sovFcc(uint64(l))
+	}
+	return n
+}
+
+func (m *SaveGroupResponse) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if m.BaseRet != nil {
+		l = m.BaseRet.Size()
+		n += 1 + l + sovFcc(uint64(l))
+	}
+	return n
+}
+
+func (m *SaveConfigRequest) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if m.Config != nil {
+		l = m.Config.Size()
+		n += 1 + l + sovFcc(uint64(l))
+	}
+	l = len(m.OpId)
+	if l > 0 {
+		n += 1 + l + sovFcc(uint64(l))
+	}
+	return n
+}
+
+func (m *SaveConfigResponse) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if m.BaseRet != nil {
+		l = m.BaseRet.Size()
+		n += 1 + l + sovFcc(uint64(l))
+	}
+	return n
+}
+
+func (m *PrePublishRequest) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	l = len(m.ProjectKey)
+	if l > 0 {
+		n += 1 + l + sovFcc(uint64(l))
+	}
+	l = len(m.GroupKey)
+	if l > 0 {
+		n += 1 + l + sovFcc(uint64(l))
+	}
+	l = len(m.ConfKey)
+	if l > 0 {
+		n += 1 + l + sovFcc(uint64(l))
+	}
+	l = len(m.PreValue)
+	if l > 0 {
+		n += 1 + l + sovFcc(uint64(l))
+	}
+	l = len(m.OpId)
+	if l > 0 {
+		n += 1 + l + sovFcc(uint64(l))
+	}
+	return n
+}
+
+func (m *PrePublishResponse) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if m.BaseRet != nil {
+		l = m.BaseRet.Size()
+		n += 1 + l + sovFcc(uint64(l))
+	}
+	return n
+}
+
+func (m *PublishRequest) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	l = len(m.ProjectKey)
+	if l > 0 {
+		n += 1 + l + sovFcc(uint64(l))
+	}
+	l = len(m.GroupKey)
+	if l > 0 {
+		n += 1 + l + sovFcc(uint64(l))
+	}
+	l = len(m.ConfKey)
+	if l > 0 {
+		n += 1 + l + sovFcc(uint64(l))
+	}
+	l = len(m.OpId)
+	if l > 0 {
+		n += 1 + l + sovFcc(uint64(l))
+	}
+	return n
+}
+
+func (m *PublishResponse) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if m.BaseRet != nil {
+		l = m.BaseRet.Size()
+		n += 1 + l + sovFcc(uint64(l))
 	}
 	return n
 }
@@ -2295,6 +3940,109 @@ func (m *FetchProjectsRequest) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
+func (m *FetchProjectsRet) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowFcc
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: FetchProjectsRet: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: FetchProjectsRet: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Total", wireType)
+			}
+			m.Total = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowFcc
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.Total |= int64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field List", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowFcc
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthFcc
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthFcc
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.List = append(m.List, &Project{})
+			if err := m.List[len(m.List)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipFcc(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthFcc
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
 func (m *Project) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
@@ -2554,8 +4302,10 @@ func (m *FetchProjectsResponse) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.Data = append(m.Data, &Project{})
-			if err := m.Data[len(m.Data)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+			if m.Data == nil {
+				m.Data = &FetchProjectsRet{}
+			}
+			if err := m.Data.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 				return err
 			}
 			iNdEx = postIndex
@@ -2742,6 +4492,109 @@ func (m *FetchGroupsRequest) Unmarshal(dAtA []byte) error {
 				return io.ErrUnexpectedEOF
 			}
 			m.GroupName = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipFcc(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthFcc
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *FetchGroupsRet) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowFcc
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: FetchGroupsRet: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: FetchGroupsRet: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Total", wireType)
+			}
+			m.Total = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowFcc
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.Total |= int64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field List", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowFcc
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthFcc
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthFcc
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.List = append(m.List, &Group{})
+			if err := m.List[len(m.List)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
 			iNdEx = postIndex
 		default:
 			iNdEx = preIndex
@@ -3055,8 +4908,10 @@ func (m *FetchGroupsResponse) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.Data = append(m.Data, &Group{})
-			if err := m.Data[len(m.Data)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+			if m.Data == nil {
+				m.Data = &FetchGroupsRet{}
+			}
+			if err := m.Data.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 				return err
 			}
 			iNdEx = postIndex
@@ -3243,6 +5098,109 @@ func (m *FetchConfigsRequest) Unmarshal(dAtA []byte) error {
 				return io.ErrUnexpectedEOF
 			}
 			m.ConfKey = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipFcc(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthFcc
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *FetchConfigsRet) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowFcc
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: FetchConfigsRet: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: FetchConfigsRet: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Total", wireType)
+			}
+			m.Total = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowFcc
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.Total |= int64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field List", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowFcc
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthFcc
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthFcc
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.List = append(m.List, &Config{})
+			if err := m.List[len(m.List)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
 			iNdEx = postIndex
 		default:
 			iNdEx = preIndex
@@ -3620,8 +5578,1182 @@ func (m *FetchConfigsResponse) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.Data = append(m.Data, &Config{})
-			if err := m.Data[len(m.Data)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+			if m.Data == nil {
+				m.Data = &FetchConfigsRet{}
+			}
+			if err := m.Data.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipFcc(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthFcc
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *SaveProjectRequest) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowFcc
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: SaveProjectRequest: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: SaveProjectRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Project", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowFcc
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthFcc
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthFcc
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if m.Project == nil {
+				m.Project = &Project{}
+			}
+			if err := m.Project.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field OpId", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowFcc
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthFcc
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthFcc
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.OpId = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipFcc(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthFcc
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *SaveProjectResponse) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowFcc
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: SaveProjectResponse: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: SaveProjectResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field BaseRet", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowFcc
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthFcc
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthFcc
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if m.BaseRet == nil {
+				m.BaseRet = &BaseRet{}
+			}
+			if err := m.BaseRet.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipFcc(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthFcc
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *SaveGroupRequest) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowFcc
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: SaveGroupRequest: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: SaveGroupRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Group", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowFcc
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthFcc
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthFcc
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if m.Group == nil {
+				m.Group = &Group{}
+			}
+			if err := m.Group.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field OpId", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowFcc
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthFcc
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthFcc
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.OpId = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipFcc(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthFcc
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *SaveGroupResponse) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowFcc
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: SaveGroupResponse: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: SaveGroupResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field BaseRet", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowFcc
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthFcc
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthFcc
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if m.BaseRet == nil {
+				m.BaseRet = &BaseRet{}
+			}
+			if err := m.BaseRet.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipFcc(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthFcc
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *SaveConfigRequest) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowFcc
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: SaveConfigRequest: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: SaveConfigRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Config", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowFcc
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthFcc
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthFcc
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if m.Config == nil {
+				m.Config = &Config{}
+			}
+			if err := m.Config.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field OpId", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowFcc
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthFcc
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthFcc
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.OpId = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipFcc(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthFcc
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *SaveConfigResponse) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowFcc
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: SaveConfigResponse: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: SaveConfigResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field BaseRet", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowFcc
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthFcc
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthFcc
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if m.BaseRet == nil {
+				m.BaseRet = &BaseRet{}
+			}
+			if err := m.BaseRet.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipFcc(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthFcc
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *PrePublishRequest) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowFcc
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: PrePublishRequest: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: PrePublishRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field ProjectKey", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowFcc
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthFcc
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthFcc
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.ProjectKey = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field GroupKey", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowFcc
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthFcc
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthFcc
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.GroupKey = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 3:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field ConfKey", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowFcc
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthFcc
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthFcc
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.ConfKey = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 4:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field PreValue", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowFcc
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthFcc
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthFcc
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.PreValue = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 5:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field OpId", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowFcc
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthFcc
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthFcc
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.OpId = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipFcc(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthFcc
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *PrePublishResponse) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowFcc
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: PrePublishResponse: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: PrePublishResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field BaseRet", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowFcc
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthFcc
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthFcc
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if m.BaseRet == nil {
+				m.BaseRet = &BaseRet{}
+			}
+			if err := m.BaseRet.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipFcc(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthFcc
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *PublishRequest) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowFcc
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: PublishRequest: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: PublishRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field ProjectKey", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowFcc
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthFcc
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthFcc
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.ProjectKey = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field GroupKey", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowFcc
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthFcc
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthFcc
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.GroupKey = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 3:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field ConfKey", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowFcc
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthFcc
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthFcc
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.ConfKey = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 4:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field OpId", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowFcc
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthFcc
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthFcc
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.OpId = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipFcc(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthFcc
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *PublishResponse) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowFcc
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: PublishResponse: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: PublishResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field BaseRet", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowFcc
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthFcc
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthFcc
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if m.BaseRet == nil {
+				m.BaseRet = &BaseRet{}
+			}
+			if err := m.BaseRet.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 				return err
 			}
 			iNdEx = postIndex

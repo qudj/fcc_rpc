@@ -6,20 +6,29 @@ import (
 	"github.com/qudj/fcc_rpc/config"
 )
 
+type HistoryChange interface {
+	TableName() string
+}
+
 type FccProject struct {
 	Id          int64  `json:"id"`
 	ProjectKey  string `json:"project_key"`
 	ProjectName string `json:"project_name"`
 	Description string `json:"description"`
 	Status      int64  `json:"status"`
+	UpdateTime  int64  `json:"update_time"`
+	CreateTime  int64  `json:"create_time"`
 }
 
 type FccGroup struct {
 	Id          int64  `json:"id"`
 	ProjectKey  string `json:"project_key"`
 	GroupKey    string `json:"group_key"`
+	GroupName   string `json:"group_name"`
 	Description string `json:"description"`
 	Status      int64  `json:"status"`
+	UpdateTime  int64  `json:"update_time"`
+	CreateTime  int64  `json:"create_time"`
 }
 
 type FccConf struct {
@@ -28,17 +37,22 @@ type FccConf struct {
 	GroupKey    string `json:"group_key"`
 	ConfKey     string `json:"conf_key"`
 	Description string `json:"description"`
+	Value       string `json:"value"`
+	PreValue    string `json:"pre_value"`
 	Status      int64  `json:"status"`
+	UpdateTime  int64  `json:"update_time"`
+	CreateTime  int64  `json:"create_time"`
 }
 
 type FccHistoryLog struct {
 	Id          int64  `json:"id"`
 	Table       string `json:"table"`
-	ObjectId    string `json:"object_id"`
+	ObjectKey   string `json:"object_key"`
 	ObjectType  string `json:"object_type"`
 	OpId        string `json:"op_id"`
 	ChangeData  string `json:"change_data"`
 	HistoryData string `json:"history_data"`
+	CreateTime  int64  `json:"create_time"`
 }
 
 type FccMiniConf struct {
@@ -51,23 +65,24 @@ func (FccProject) TableName() string {
 }
 
 func (FccGroup) TableName() string {
-	return "fcc_project"
+	return "fcc_group"
 }
 
 func (FccConf) TableName() string {
-	return "fcc_project"
+	return "fcc_conf"
 }
 
 func (FccHistoryLog) TableName() string {
-	return "fcc_project"
+	return "fcc_history_log"
 }
 
 func (FccMiniConf) TableName() string {
 	return "fcc_conf"
 }
 
-func GetProjects(ctx context.Context, filter map[string]interface{}, offset, limit int, orderBy string) ([]*FccProject, error) {
+func GetProjects(ctx context.Context, filter map[string]interface{}, offset, limit int, orderBy string) ([]*FccProject, int64, error) {
 	var ret []*FccProject
+	var count int64
 	whereStr := "id > 0"
 	whereArgs := make([]interface{}, 0)
 	if v, ok := filter["project_key"]; ok {
@@ -78,14 +93,16 @@ func GetProjects(ctx context.Context, filter map[string]interface{}, offset, lim
 		whereStr += " and project_name = ?"
 		whereArgs = append(whereArgs, v)
 	}
-	if err := config.FccReadDB.WithContext(ctx).Where(whereStr, whereArgs...).Order(orderBy).Offset(offset).Limit(limit).Find(&ret).Error; err != nil {
-		return nil, err
+	if err := config.FccReadDB.Table("fcc_project").WithContext(ctx).Where(whereStr, whereArgs...).Debug().Count(&count).
+		Order(orderBy).Offset(offset).Limit(limit).Find(&ret).Error; err != nil {
+		return nil, 0, err
 	}
-	return ret, nil
+	return ret, count, nil
 }
 
-func GetGroups(ctx context.Context, proKey string, filter map[string]interface{}, offset, limit int, orderBy string) ([]*FccGroup, error) {
+func GetGroups(ctx context.Context, proKey string, filter map[string]interface{}, offset, limit int, orderBy string) ([]*FccGroup, int64, error) {
 	var ret []*FccGroup
+	var count int64
 	whereStr := "project_key = ?"
 	whereArgs := []interface{}{proKey}
 	if v, ok := filter["group_key"]; ok {
@@ -96,24 +113,27 @@ func GetGroups(ctx context.Context, proKey string, filter map[string]interface{}
 		whereStr += " and group_name = ?"
 		whereArgs = append(whereArgs, v)
 	}
-	if err := config.FccReadDB.WithContext(ctx).Where(whereStr, whereArgs...).Order(orderBy).Offset(offset).Limit(limit).Find(&ret).Error; err != nil {
-		return nil, err
+	if err := config.FccReadDB.Table("fcc_group").WithContext(ctx).Where(whereStr, whereArgs...).Debug().Count(&count).
+		Order(orderBy).Offset(offset).Limit(limit).Find(&ret).Error; err != nil {
+		return nil, 0, err
 	}
-	return ret, nil
+	return ret, count, nil
 }
 
-func GetConfigs(ctx context.Context, proKey, grKey string, filter map[string]interface{}, offset, limit int, orderBy string) ([]*FccConf, error) {
+func GetConfigs(ctx context.Context, proKey, grKey string, filter map[string]interface{}, offset, limit int, orderBy string) ([]*FccConf, int64, error) {
 	var ret []*FccConf
+	var count int64
 	whereStr := "project_key = ? and group_key = ?"
 	whereArgs := []interface{}{proKey, grKey}
 	if v, ok := filter["conf_key"]; ok {
 		whereStr += " and conf_key = ?"
 		whereArgs = append(whereArgs, v)
 	}
-	if err := config.FccReadDB.WithContext(ctx).Where(whereStr, whereArgs...).Order(orderBy).Offset(offset).Limit(limit).Find(&ret).Error; err != nil {
-		return nil, err
+	if err := config.FccReadDB.Table("fcc_conf").WithContext(ctx).Where(whereStr, whereArgs...).Debug().Count(&count).
+		Order(orderBy).Offset(offset).Limit(limit).Find(&ret).Error; err != nil {
+		return nil, 0, err
 	}
-	return ret, nil
+	return ret, count, nil
 }
 
 func GetMiniConfig(ctx context.Context, proKey, grKey, confKey string) (*FccConf, error) {
