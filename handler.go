@@ -132,6 +132,6 @@ func (f FccService) FetchConfig(ctx context.Context, req *fcc_serv.FetchConfigRe
 		ret.BaseRet.Msg = err.Error()
 		return ret, nil
 	}
-	ret.Data.Value = value
+	ret.Data = value
 	return ret, nil
 }

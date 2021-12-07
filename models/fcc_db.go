@@ -54,11 +54,6 @@ type FccHistoryLog struct {
 	CreateTime  int64  `json:"create_time"`
 }
 
-type FccMiniConf struct {
-	Id    int64  `json:"id" form:"id"`
-	Value string `json:"value" form:"value"`
-}
-
 func (FccProject) TableName() string {
 	return "fcc_project"
 }
@@ -73,10 +68,6 @@ func (FccConf) TableName() string {
 
 func (FccHistoryLog) TableName() string {
 	return "fcc_history_log"
-}
-
-func (FccMiniConf) TableName() string {
-	return "fcc_conf"
 }
 
 func GetProjects(ctx context.Context, filter map[string]interface{}, offset, limit int, orderBy string) ([]*FccProject, int64, error) {

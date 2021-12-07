@@ -8,6 +8,7 @@ import (
 	"github.com/qudj/fcc_rpc/models/fcc_serv"
 	"github.com/qudj/fcc_rpc/service"
 	"golang.org/x/sync/singleflight"
+	"time"
 )
 
 var gsf singleflight.Group
@@ -19,6 +20,7 @@ func PrePublish(ctx context.Context, req *fcc_serv.PrePublishRequest) error {
 	}
 	cur = pre
 	cur.PreValue = req.PreValue
+	cur.UpdateTime = time.Now().Unix()
 	if err := models.SaveConf(&cur); err != nil {
 		return err
 	}
@@ -34,20 +36,35 @@ func Publish(ctx context.Context, req *fcc_serv.PublishRequest) error {
 	cur = pre
 	cur.PreValue = ""
 	cur.Value = pre.PreValue
+	cur.UpdateTime = time.Now().Unix()
 	if err := models.SaveConf(&cur); err != nil {
 		return err
 	}
-	_ = service.SaveHistory(pre, cur, cur.TableName(), cur.ProjectKey, "publish", req.OpId)
+	_ = service.SaveHistory(pre.Value, cur.Value, cur.TableName(), cur.ProjectKey, "publish", req.OpId)
 	return nil
 }
 
-func FetchConfig(ctx context.Context, req *fcc_serv.FetchConfigRequest) (string, error) {
+func FetchConfig(ctx context.Context, req *fcc_serv.FetchConfigRequest) (*fcc_serv.Config, error) {
 	key := fmt.Sprintf("MC:%s_%s_%s", req.ProjectKey, req.GroupKey, req.ConfKey)
-	res, err, _ := gsf.Do(key, func() (interface{}, error) {
+	gRes, err, _ := gsf.Do(key, func() (interface{}, error) {
 		return models.GetFccConf(ctx, req.ProjectKey, req.GroupKey, req.ConfKey)
 	})
 	if err != nil {
-		return "", err
+		return nil, err
 	}
-	return res.(*models.FccMiniConf).Value, nil
+	res := gRes.(*models.FccConf)
+	return FormatConfigRet(res), nil
+}
+
+func FormatConfigRet(conf *models.FccConf) *fcc_serv.Config {
+	ret := &fcc_serv.Config{
+		ProjectKey:  conf.ProjectKey,
+		GroupKey:    conf.GroupKey,
+		ConfKey:     conf.ConfKey,
+		Description: conf.Description,
+		Value:       conf.Value,
+		PreValue:    conf.Value,
+		Status:      conf.Status,
+	}
+	return ret
 }

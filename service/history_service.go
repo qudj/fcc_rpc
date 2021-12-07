@@ -1,14 +1,16 @@
 package service
 
-import(
+import (
 	"encoding/json"
 	"fmt"
 	"github.com/qudj/fcc_rpc/models"
+	"time"
 )
 
 func SaveHistory(pre, cur interface{}, table, obKey, obType, opId string) error {
 	historyByte, _ := json.Marshal(pre)
 	changeByte, _ := json.Marshal(cur)
+	curTime := time.Now().Unix()
 	history := models.FccHistoryLog{
 		Table:       table,
 		ObjectKey:   obKey,
@@ -16,6 +18,7 @@ func SaveHistory(pre, cur interface{}, table, obKey, obType, opId string) error 
 		OpId:        opId,
 		ChangeData:  string(changeByte),
 		HistoryData: string(historyByte),
+		CreateTime:  curTime,
 	}
 	if err := models.SaveHistory(&history); err != nil {
 		fmt.Println(fmt.Sprintf("save histroy error=%v", err))
