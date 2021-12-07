@@ -98,7 +98,7 @@ func FormatConfigRetList(res []*models.FccConf) []*fcc_serv.Config {
 			ConfKey:     v.ConfKey,
 			Description: v.Description,
 			Value:       v.Value,
-			PreValue:    v.Value,
+			PreValue:    v.PreValue,
 			Status:      v.Status,
 		}
 		ret = append(ret, one)

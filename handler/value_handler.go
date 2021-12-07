@@ -63,7 +63,7 @@ func FormatConfigRet(conf *models.FccConf) *fcc_serv.Config {
 		ConfKey:     conf.ConfKey,
 		Description: conf.Description,
 		Value:       conf.Value,
-		PreValue:    conf.Value,
+		PreValue:    conf.PreValue,
 		Status:      conf.Status,
 	}
 	return ret

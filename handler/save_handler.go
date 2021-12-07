@@ -15,13 +15,13 @@ func SaveProject(ctx context.Context, req *fcc_serv.SaveProjectRequest) error {
 	if req.Project == nil {
 		return errors.New("param error")
 	}
-	var pre *models.FccProject
-	objectType := "add"
-	if err := config.FccWriteDB.WithContext(ctx).Where("project_key = ?", req.Project.ProjectKey).Last(pre).Error; err != nil {
+	pre := &models.FccProject{}
+	objectType := "update"
+	if err := config.FccWriteDB.WithContext(ctx).Debug().Where("project_key = ?", req.Project.ProjectKey).Last(pre).Error; err != nil {
 		if err != gorm.ErrRecordNotFound {
 			return err
 		}
-		objectType = "change"
+		objectType = "add"
 	}
 	cur, err := GetCurProject(pre, req)
 	if err != nil {
@@ -30,7 +30,6 @@ func SaveProject(ctx context.Context, req *fcc_serv.SaveProjectRequest) error {
 	if err := models.SaveProject(cur); err != nil {
 		return err
 	}
-
 	_ = service.SaveHistory(pre, cur, cur.TableName(), cur.ProjectKey, objectType, req.OpId)
 	return nil
 }
@@ -51,6 +50,7 @@ func GetCurProject(pre *models.FccProject, req *fcc_serv.SaveProjectRequest) (*m
 		if req.Project.Status == 0 {
 			return nil, errors.New("add project need status")
 		}
+		cur.ProjectKey = req.Project.ProjectKey
 		cur.CreateTime = curTime
 	} else {
 		cur = pre
@@ -72,17 +72,17 @@ func SaveGroup(ctx context.Context, req *fcc_serv.SaveGroupRequest) error {
 	if req.Group == nil {
 		return errors.New("param error")
 	}
-	var pro models.FccProject
-	if err := config.FccWriteDB.WithContext(ctx).Where("project_key = ?", req.Group.ProjectKey).Last(&pro).Error; err != nil {
+	pro := &models.FccProject{}
+	if err := config.FccWriteDB.WithContext(ctx).Where("project_key = ?", req.Group.ProjectKey).Last(pro).Error; err != nil {
 		return err
 	}
-	var pre *models.FccGroup
-	objectType := "add"
+	pre := &models.FccGroup{}
+	objectType := "update"
 	if err := config.FccWriteDB.WithContext(ctx).Where("project_key = ? and group_key = ?", req.Group.ProjectKey, req.Group.GroupKey).Last(pre).Error; err != nil {
 		if err != gorm.ErrRecordNotFound {
 			return err
 		}
-		objectType = "change"
+		objectType = "add"
 	}
 	cur, err := GetCurGroup(pre, req)
 	if err != nil {
@@ -111,6 +111,8 @@ func GetCurGroup(pre *models.FccGroup, req *fcc_serv.SaveGroupRequest) (*models.
 		if req.Group.Status == 0 {
 			return nil, errors.New("add project need status")
 		}
+		cur.ProjectKey = req.Group.ProjectKey
+		cur.GroupKey = req.Group.GroupKey
 		cur.CreateTime = curTime
 	} else {
 		cur = pre
@@ -132,18 +134,18 @@ func SaveConfig(ctx context.Context, req *fcc_serv.SaveConfigRequest) error {
 	if req.Config == nil {
 		return errors.New("param error")
 	}
-	var gro models.FccGroup
-	if err := config.FccWriteDB.WithContext(ctx).Where("project_key = ? and group_key = ?", req.Config.ProjectKey, req.Config.GroupKey).Last(&gro).Error; err != nil {
+	gro := &models.FccGroup{}
+	if err := config.FccWriteDB.WithContext(ctx).Where("project_key = ? and group_key = ?", req.Config.ProjectKey, req.Config.GroupKey).Last(gro).Error; err != nil {
 		return err
 	}
 
-	var pre *models.FccConf
-	objectType := "add"
+	pre := &models.FccConf{}
+	objectType := "update"
 	if err := config.FccWriteDB.WithContext(ctx).Where("project_key = ? and group_key = ? and conf_key = ?", req.Config.ProjectKey, req.Config.GroupKey, req.Config.ConfKey).Last(pre).Error; err != nil {
 		if err != gorm.ErrRecordNotFound {
 			return err
 		}
-		objectType = "change"
+		objectType = "add"
 	}
 	cur, err := GetCurConfig(pre, req)
 	if err != nil {
@@ -169,6 +171,9 @@ func GetCurConfig(pre *models.FccConf, req *fcc_serv.SaveConfigRequest) (*models
 		if req.Config.Status == 0 {
 			return nil, errors.New("add project need status")
 		}
+		cur.ProjectKey = req.Config.ProjectKey
+		cur.GroupKey = req.Config.GroupKey
+		cur.ConfKey = req.Config.ConfKey
 		cur.CreateTime = curTime
 	} else {
 		cur = pre
