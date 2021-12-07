@@ -3,6 +3,7 @@ package models
 import (
 	"context"
 	"github.com/qudj/fcc_rpc/config"
+	"gorm.io/gorm"
 )
 
 type HistoryChange interface {
@@ -157,6 +158,9 @@ func SaveHistory(history *FccHistoryLog) error {
 func GetFccConf(ctx context.Context, project, group, key string) (*FccConf, error) {
 	conf := &FccConf{}
 	if err := config.FccReadDB.WithContext(ctx).Where("project_key = ? and group_key = ? and conf_key = ?", project, group, key).First(conf).Error; err != nil {
+		if err == gorm.ErrRecordNotFound {
+			return conf, nil
+		}
 		return nil, err
 	}
 	return conf, nil
