@@ -4,6 +4,7 @@ import (
 	"context"
 	"github.com/qudj/fcc_rpc/handler"
 	"github.com/qudj/fcc_rpc/models/fcc_serv"
+	"github.com/qudj/fly_lib/tools"
 )
 
 type FccService struct{}
@@ -16,6 +17,9 @@ func (f FccService) FetchProjects(ctx context.Context, req *fcc_serv.FetchProjec
 	ret := &fcc_serv.FetchProjectsResponse{
 		BaseRet: &fcc_serv.BaseRet{},
 	}
+	defer func() {
+		tools.Logger().Infof("FccService FetchProjects req=%v, ret=%v, err=%v", req, ret)
+	}()
 	data, err := handler.FetchProjects(ctx, req)
 	if err != nil {
 		ret.BaseRet.Code = 400

@@ -3,8 +3,10 @@ package main
 import (
 	"fmt"
 	"github.com/qudj/fcc_rpc/config"
+	"github.com/qudj/fcc_rpc/middlewares"
 	"github.com/qudj/fcc_rpc/models/fcc_serv"
 	"google.golang.org/grpc"
+	"log"
 	"net"
 )
 
@@ -22,12 +24,12 @@ func main() {
 	}
 
 	// 实例化grpc Server
-	s := grpc.NewServer()
+	s := grpc.NewServer(grpc.UnaryInterceptor(middlewares.UnaryServerInterceptor))
 
 	// 注册HelloService
 	fccService := NewFccServiceServer()
 	fcc_serv.RegisterFccServiceServer(s, fccService)
 
-	fmt.Println(fmt.Sprintf("listen to %s:", Address))
+	log.Println(fmt.Sprintf("listen to %s:", Address))
 	s.Serve(listen)
 }
