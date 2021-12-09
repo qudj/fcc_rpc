@@ -168,12 +168,11 @@ func GetCurConfig(pre *models.FccConf, req *fcc_serv.SaveConfigRequest) (*models
 		if req.Config.Description == "" {
 			return nil, errors.New("add project need description")
 		}
-		if req.Config.Status == 0 {
-			return nil, errors.New("add project need status")
-		}
 		cur.ProjectKey = req.Config.ProjectKey
 		cur.GroupKey = req.Config.GroupKey
 		cur.ConfKey = req.Config.ConfKey
+		cur.PublishStatus = config.UnPublishStatus
+		cur.Status = config.StatusNormal
 		cur.CreateTime = curTime
 	} else {
 		cur = pre

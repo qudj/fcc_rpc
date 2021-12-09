@@ -20,6 +20,7 @@ func PrePublish(ctx context.Context, req *fcc_serv.PrePublishRequest) error {
 	}
 	cur = pre
 	cur.PreValue = req.PreValue
+	cur.PublishStatus = config.UnPublishStatus
 	cur.UpdateTime = time.Now().Unix()
 	if err := models.SaveConf(&cur); err != nil {
 		return err
@@ -36,6 +37,7 @@ func Publish(ctx context.Context, req *fcc_serv.PublishRequest) error {
 	cur = pre
 	cur.PreValue = ""
 	cur.Value = pre.PreValue
+	cur.PublishStatus = config.PublishedStatus
 	cur.UpdateTime = time.Now().Unix()
 	if err := models.SaveConf(&cur); err != nil {
 		return err
@@ -58,13 +60,14 @@ func FetchConfig(ctx context.Context, req *fcc_serv.FetchConfigRequest) (*fcc_se
 
 func FormatConfigRet(conf *models.FccConf) *fcc_serv.Config {
 	ret := &fcc_serv.Config{
-		ProjectKey:  conf.ProjectKey,
-		GroupKey:    conf.GroupKey,
-		ConfKey:     conf.ConfKey,
-		Description: conf.Description,
-		Value:       conf.Value,
-		PreValue:    conf.PreValue,
-		Status:      conf.Status,
+		ProjectKey:    conf.ProjectKey,
+		GroupKey:      conf.GroupKey,
+		ConfKey:       conf.ConfKey,
+		Description:   conf.Description,
+		Value:         conf.Value,
+		PreValue:      conf.PreValue,
+		Status:        conf.Status,
+		PublishStatus: conf.PublishStatus,
 	}
 	return ret
 }

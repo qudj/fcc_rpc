@@ -32,16 +32,17 @@ type FccGroup struct {
 }
 
 type FccConf struct {
-	Id          int64  `json:"id"`
-	ProjectKey  string `json:"project_key"`
-	GroupKey    string `json:"group_key"`
-	ConfKey     string `json:"conf_key"`
-	Description string `json:"description"`
-	Value       string `json:"value"`
-	PreValue    string `json:"pre_value"`
-	Status      int64  `json:"status"`
-	UpdateTime  int64  `json:"update_time"`
-	CreateTime  int64  `json:"create_time"`
+	Id            int64  `json:"id"`
+	ProjectKey    string `json:"project_key"`
+	GroupKey      string `json:"group_key"`
+	ConfKey       string `json:"conf_key"`
+	Description   string `json:"description"`
+	Value         string `json:"value"`
+	PreValue      string `json:"pre_value"`
+	PublishStatus int64  `json:"publish_status"`
+	Status        int64  `json:"status"`
+	UpdateTime    int64  `json:"update_time"`
+	CreateTime    int64  `json:"create_time"`
 }
 
 type FccHistoryLog struct {
