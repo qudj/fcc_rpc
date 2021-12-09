@@ -15,6 +15,9 @@ func SaveProject(ctx context.Context, req *fcc_serv.SaveProjectRequest) error {
 	if req.Project == nil {
 		return errors.New("param error")
 	}
+	if req.SaveMode == fcc_serv.SaveMode_UNKNOWN {
+		return errors.New("save mode error")
+	}
 	pre := &models.FccProject{}
 	objectType := "update"
 	if err := config.FccWriteDB.WithContext(ctx).Debug().Where("project_key = ?", req.Project.ProjectKey).Last(pre).Error; err != nil {
@@ -22,6 +25,16 @@ func SaveProject(ctx context.Context, req *fcc_serv.SaveProjectRequest) error {
 			return err
 		}
 		objectType = "add"
+	}
+	if req.SaveMode == fcc_serv.SaveMode_ADD {
+		if pre != nil && pre.Id != 0 {
+			return errors.New("has project")
+		}
+	}
+	if req.SaveMode == fcc_serv.SaveMode_UPDATE {
+		if pre == nil || pre.Id == 0 {
+			return errors.New("not found project")
+		}
 	}
 	cur, err := GetCurProject(pre, req)
 	if err != nil {
@@ -70,6 +83,9 @@ func SaveGroup(ctx context.Context, req *fcc_serv.SaveGroupRequest) error {
 	if req.Group == nil {
 		return errors.New("param error")
 	}
+	if req.SaveMode == fcc_serv.SaveMode_UNKNOWN {
+		return errors.New("save mode error")
+	}
 	pro := &models.FccProject{}
 	if err := config.FccWriteDB.WithContext(ctx).Where("project_key = ?", req.Group.ProjectKey).Last(pro).Error; err != nil {
 		return err
@@ -81,6 +97,16 @@ func SaveGroup(ctx context.Context, req *fcc_serv.SaveGroupRequest) error {
 			return err
 		}
 		objectType = "add"
+	}
+	if req.SaveMode == fcc_serv.SaveMode_ADD {
+		if pre != nil && pre.Id != 0 {
+			return errors.New("has group")
+		}
+	}
+	if req.SaveMode == fcc_serv.SaveMode_UPDATE {
+		if pre == nil || pre.Id == 0 {
+			return errors.New("not found group")
+		}
 	}
 	cur, err := GetCurGroup(pre, req)
 	if err != nil {
@@ -130,11 +156,13 @@ func SaveConfig(ctx context.Context, req *fcc_serv.SaveConfigRequest) error {
 	if req.Config == nil {
 		return errors.New("param error")
 	}
+	if req.SaveMode == fcc_serv.SaveMode_UNKNOWN {
+		return errors.New("save mode error")
+	}
 	gro := &models.FccGroup{}
 	if err := config.FccWriteDB.WithContext(ctx).Where("project_key = ? and group_key = ?", req.Config.ProjectKey, req.Config.GroupKey).Last(gro).Error; err != nil {
 		return err
 	}
-
 	pre := &models.FccConf{}
 	objectType := "update"
 	if err := config.FccWriteDB.WithContext(ctx).Where("project_key = ? and group_key = ? and conf_key = ?", req.Config.ProjectKey, req.Config.GroupKey, req.Config.ConfKey).Last(pre).Error; err != nil {
@@ -142,6 +170,16 @@ func SaveConfig(ctx context.Context, req *fcc_serv.SaveConfigRequest) error {
 			return err
 		}
 		objectType = "add"
+	}
+	if req.SaveMode == fcc_serv.SaveMode_ADD {
+		if pre != nil && pre.Id != 0 {
+			return errors.New("has config")
+		}
+	}
+	if req.SaveMode == fcc_serv.SaveMode_UPDATE {
+		if pre == nil || pre.Id == 0 {
+			return errors.New("not found config")
+		}
 	}
 	cur, err := GetCurConfig(pre, req)
 	if err != nil {
