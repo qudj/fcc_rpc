@@ -47,9 +47,7 @@ func GetCurProject(pre *models.FccProject, req *fcc_serv.SaveProjectRequest) (*m
 		if req.Project.Description == "" {
 			return nil, errors.New("add project need description")
 		}
-		if req.Project.Status == 0 {
-			return nil, errors.New("add project need status")
-		}
+		cur.Status = config.StatusNormal
 		cur.ProjectKey = req.Project.ProjectKey
 		cur.CreateTime = curTime
 	} else {
@@ -103,14 +101,12 @@ func GetCurGroup(pre *models.FccGroup, req *fcc_serv.SaveGroupRequest) (*models.
 	curTime := time.Now().Unix()
 	if pre == nil || pre.Id == 0 {
 		if req.Group.GroupName == "" {
-			return nil, errors.New("add project need project_name")
+			return nil, errors.New("add group need group_name")
 		}
 		if req.Group.Description == "" {
-			return nil, errors.New("add project need description")
+			return nil, errors.New("add group need description")
 		}
-		if req.Group.Status == 0 {
-			return nil, errors.New("add project need status")
-		}
+		cur.Status = config.StatusNormal
 		cur.ProjectKey = req.Group.ProjectKey
 		cur.GroupKey = req.Group.GroupKey
 		cur.CreateTime = curTime
