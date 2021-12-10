@@ -16,6 +16,8 @@ type FccProject struct {
 	ProjectName string `json:"project_name"`
 	Description string `json:"description"`
 	Status      int64  `json:"status"`
+	OpId        string `json:"op_id"`
+	OpName      string `json:"op_name"`
 	UpdateTime  int64  `json:"update_time"`
 	CreateTime  int64  `json:"create_time"`
 }
@@ -27,6 +29,8 @@ type FccGroup struct {
 	GroupName   string `json:"group_name"`
 	Description string `json:"description"`
 	Status      int64  `json:"status"`
+	OpId        string `json:"op_id"`
+	OpName      string `json:"op_name"`
 	UpdateTime  int64  `json:"update_time"`
 	CreateTime  int64  `json:"create_time"`
 }
@@ -41,6 +45,8 @@ type FccConf struct {
 	PreValue      string `json:"pre_value"`
 	PublishStatus int64  `json:"publish_status"`
 	Status        int64  `json:"status"`
+	OpId        string `json:"op_id"`
+	OpName      string `json:"op_name"`
 	UpdateTime    int64  `json:"update_time"`
 	CreateTime    int64  `json:"create_time"`
 }

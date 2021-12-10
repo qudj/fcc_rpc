@@ -43,7 +43,7 @@ func SaveProject(ctx context.Context, req *fcc_serv.SaveProjectRequest) error {
 	if err := models.SaveProject(cur); err != nil {
 		return err
 	}
-	_ = service.SaveHistory(pre, cur, cur.TableName(), cur.ProjectKey, objectType, req.OpId)
+	_ = service.SaveHistory(pre, cur, cur.TableName(), cur.ProjectKey, objectType, cur.OpId)
 	return nil
 }
 
@@ -75,6 +75,8 @@ func GetCurProject(pre *models.FccProject, req *fcc_serv.SaveProjectRequest) (*m
 	if req.Project.Status != 0 {
 		cur.Status = req.Project.Status
 	}
+	cur.OpId = req.Project.OpId
+	cur.OpName = req.Project.OpName
 	cur.UpdateTime = curTime
 	return cur, nil
 }
@@ -115,7 +117,7 @@ func SaveGroup(ctx context.Context, req *fcc_serv.SaveGroupRequest) error {
 	if err := models.SaveGroup(cur); err != nil {
 		return err
 	}
-	_ = service.SaveHistory(pre, cur, cur.TableName(), cur.ProjectKey, objectType, req.OpId)
+	_ = service.SaveHistory(pre, cur, cur.TableName(), cur.ProjectKey, objectType, cur.OpId)
 	return nil
 }
 
@@ -148,6 +150,8 @@ func GetCurGroup(pre *models.FccGroup, req *fcc_serv.SaveGroupRequest) (*models.
 	if req.Group.Status != 0 {
 		cur.Status = req.Group.Status
 	}
+	cur.OpId = req.Group.OpId
+	cur.OpName = req.Group.OpName
 	cur.UpdateTime = curTime
 	return cur, nil
 }
@@ -188,7 +192,7 @@ func SaveConfig(ctx context.Context, req *fcc_serv.SaveConfigRequest) error {
 	if err := models.SaveConf(cur); err != nil {
 		return err
 	}
-	_ = service.SaveHistory(pre, cur, cur.TableName(), cur.ProjectKey, objectType, req.OpId)
+	_ = service.SaveHistory(pre, cur, cur.TableName(), cur.ProjectKey, objectType, cur.OpId)
 	return nil
 }
 
@@ -223,6 +227,8 @@ func GetCurConfig(pre *models.FccConf, req *fcc_serv.SaveConfigRequest) (*models
 	if req.Config.Value != "" {
 		cur.Value = req.Config.Value
 	}
+	cur.OpId = req.Config.OpId
+	cur.OpName = req.Config.OpName
 	cur.UpdateTime = curTime
 	return cur, nil
 }

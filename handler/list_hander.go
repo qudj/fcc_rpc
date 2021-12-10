@@ -33,6 +33,10 @@ func FormatProjectRetList(res []*models.FccProject) []*fcc_serv.Project {
 			ProjectName: v.ProjectName,
 			Description: v.Description,
 			Status:      v.Status,
+			OpId:        v.OpId,
+			OpName:      v.OpName,
+			CreateTime:  v.CreateTime,
+			UpdateTime:  v.UpdateTime,
 		}
 		ret = append(ret, one)
 	}
@@ -67,6 +71,10 @@ func FormatGroupRetList(res []*models.FccGroup) []*fcc_serv.Group {
 			GroupName:   v.GroupName,
 			Description: v.Description,
 			Status:      v.Status,
+			OpId:        v.OpId,
+			OpName:      v.OpName,
+			CreateTime:  v.CreateTime,
+			UpdateTime:  v.UpdateTime,
 		}
 		ret = append(ret, one)
 	}
@@ -100,6 +108,10 @@ func FormatConfigRetList(res []*models.FccConf) []*fcc_serv.Config {
 			Value:       v.Value,
 			PreValue:    v.PreValue,
 			Status:      v.Status,
+			OpId:        v.OpId,
+			OpName:      v.OpName,
+			CreateTime:  v.CreateTime,
+			UpdateTime:  v.UpdateTime,
 		}
 		ret = append(ret, one)
 	}

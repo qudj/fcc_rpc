@@ -21,6 +21,8 @@ func PrePublish(ctx context.Context, req *fcc_serv.PrePublishRequest) error {
 	cur = pre
 	cur.PreValue = req.PreValue
 	cur.PublishStatus = config.UnPublishStatus
+	cur.OpId = req.OpId
+	cur.OpName = req.OpName
 	cur.UpdateTime = time.Now().Unix()
 	if err := models.SaveConf(&cur); err != nil {
 		return err
@@ -38,6 +40,8 @@ func Publish(ctx context.Context, req *fcc_serv.PublishRequest) error {
 	cur.PreValue = ""
 	cur.Value = pre.PreValue
 	cur.PublishStatus = config.PublishedStatus
+	cur.OpId = req.OpId
+	cur.OpName = req.OpName
 	cur.UpdateTime = time.Now().Unix()
 	if err := models.SaveConf(&cur); err != nil {
 		return err
@@ -68,6 +72,10 @@ func FormatConfigRet(conf *models.FccConf) *fcc_serv.Config {
 		PreValue:      conf.PreValue,
 		Status:        conf.Status,
 		PublishStatus: conf.PublishStatus,
+		OpId:          conf.OpId,
+		OpName:        conf.OpName,
+		CreateTime:    conf.CreateTime,
+		UpdateTime:    conf.UpdateTime,
 	}
 	return ret
 }
